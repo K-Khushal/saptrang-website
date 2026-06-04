@@ -551,7 +551,7 @@ function Testimonials() {
             <div className="font-display text-6xl leading-none italic">"</div>
             <blockquote className="font-display text-2xl lg:text-3xl leading-snug">{q.quote}</blockquote>
             <figcaption className="mt-8 flex items-center gap-3">
-              <span className="size-10 rounded-full bg-ink text-cream grid place-items-center font-mono text-xs">{q.name[0]}</span>
+              <img src={q.avatar} alt={q.name} width={120} height={120} loading="lazy" className="size-12 rounded-full object-cover border-2 border-ink" />
               <div>
                 <div className="font-semibold">{q.name}</div>
                 <div className="text-xs opacity-80 font-mono uppercase tracking-widest">{q.role}</div>
