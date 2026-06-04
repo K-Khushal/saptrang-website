@@ -224,7 +224,7 @@ function About() {
           </div>
         </div>
 
-        <div className="lg:col-span-5 lg:sticky lg:top-24">
+        <div className="lg:col-span-5">
           <div className="relative">
             <img
               src={aboutImg}
