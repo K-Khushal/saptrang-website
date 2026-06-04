@@ -273,8 +273,9 @@ function Highlights() {
           <a href="#" className="hidden md:inline-flex font-mono text-[11px] uppercase tracking-[0.25em] underline underline-offset-[6px] decoration-acid hover:text-acid">View full archive →</a>
         </div>
 
-        <div className="grid grid-cols-12 gap-4 auto-rows-[120px]">
-          <div className="col-span-12 md:col-span-7 row-span-3 relative rounded-2xl overflow-hidden group">
+        <div className="grid grid-cols-12 gap-4 auto-rows-[140px]">
+          {/* Hero video — cols 1-7, rows 1-4 */}
+          <div className="col-span-12 md:col-span-7 row-span-4 relative rounded-2xl overflow-hidden group">
             <img src={eventImg} alt="Outdoor film screening at night" width={1400} height={900} loading="lazy" className="w-full h-full object-cover" />
             <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-transparent to-transparent" />
             <button className="absolute bottom-6 left-6 inline-flex items-center gap-3 bg-magenta text-cream pl-5 pr-2 py-2 rounded-full text-sm font-medium hover:bg-acid hover:text-ink transition-colors">
@@ -283,31 +284,45 @@ function Highlights() {
             </button>
             <div className="absolute top-6 right-6 font-mono text-[10px] uppercase tracking-widest bg-acid text-ink px-2 py-1">02:14</div>
           </div>
-          <div className="col-span-6 md:col-span-5 row-span-2 bg-tangerine rounded-2xl p-6 flex flex-col justify-between">
+          {/* Tangerine quote — cols 8-12, rows 1-2 */}
+          <div className="col-span-12 md:col-span-5 row-span-2 bg-tangerine rounded-2xl p-6 flex flex-col justify-between gap-4">
             <span className="font-mono text-[10px] uppercase tracking-widest text-ink/70">Field notes</span>
-            <p className="font-display text-3xl italic text-ink leading-tight">"The projector hummed and the room held its breath."</p>
+            <p className="font-display text-2xl lg:text-3xl italic text-ink leading-tight">"The projector hummed and the room held its breath."</p>
           </div>
-          <div className="col-span-6 md:col-span-2 row-span-1 bg-acid rounded-2xl p-4 flex items-end">
-            <span className="font-mono text-[10px] uppercase tracking-widest text-ink">Roll · 04A</span>
+          {/* Acid roll — cols 8-9, rows 3-4 */}
+          <div className="col-span-6 md:col-span-2 row-span-2 bg-acid rounded-2xl p-4 flex flex-col justify-between text-ink">
+            <span className="font-mono text-[10px] uppercase tracking-widest">Reel</span>
+            <span className="font-mono text-[10px] uppercase tracking-widest">Roll · 04A</span>
           </div>
-          <div className="col-span-6 md:col-span-3 row-span-1 bg-magenta rounded-2xl p-4 flex flex-col justify-between text-cream">
+          {/* Magenta audio — cols 10-12, rows 3-4 */}
+          <div className="col-span-6 md:col-span-3 row-span-2 bg-magenta rounded-2xl p-4 flex flex-col justify-between text-cream">
             <span className="font-mono text-[10px] uppercase tracking-widest opacity-80">Audio</span>
-            <span className="font-display text-xl italic">42 mins · panel</span>
+            <span className="font-display text-2xl italic leading-tight">42 mins<br/>panel</span>
           </div>
-          <div className="col-span-12 md:col-span-5 row-span-2 bg-emerald rounded-2xl p-6 flex flex-col justify-between text-cream">
+          {/* Emerald stills — cols 1-5, rows 5-7 (taller to fit grid) */}
+          <div className="col-span-12 md:col-span-5 row-span-3 bg-emerald rounded-2xl p-5 flex flex-col gap-4 text-cream">
             <span className="font-mono text-[10px] uppercase tracking-widest opacity-80">Selected stills</span>
-            <div className="grid grid-cols-3 gap-2">
+            <div className="grid grid-cols-3 gap-2 flex-1 min-h-0">
               {[0,1,2,3,4,5].map(i => (
-                <div key={i} className="aspect-square rounded-md bg-cream/15 backdrop-blur-sm" />
+                <div key={i} className="rounded-md bg-cream/15 backdrop-blur-sm" />
               ))}
             </div>
             <span className="font-mono text-[10px] uppercase tracking-widest opacity-80">94 frames archived</span>
           </div>
-          <div className="col-span-6 md:col-span-4 row-span-1 bg-cobalt rounded-2xl p-4 flex items-end text-cream">
-            <span className="font-display text-xl italic">Vol. 11 trailer →</span>
+          {/* Cobalt trailer — cols 6-9, rows 5-6 */}
+          <div className="col-span-6 md:col-span-4 row-span-2 bg-cobalt rounded-2xl p-5 flex flex-col justify-between text-cream">
+            <span className="font-mono text-[10px] uppercase tracking-widest opacity-80">Trailer</span>
+            <span className="font-display text-2xl italic">Vol. 11 →</span>
           </div>
-          <div className="col-span-6 md:col-span-3 row-span-1 bg-cream rounded-2xl p-4 flex items-end text-ink">
-            <span className="font-mono text-[10px] uppercase tracking-widest">12 chapters · live feed</span>
+          {/* Cream feed — cols 10-12, rows 5-6 */}
+          <div className="col-span-6 md:col-span-3 row-span-2 bg-cream rounded-2xl p-5 flex flex-col justify-between text-ink">
+            <span className="font-mono text-[10px] uppercase tracking-widest">Live feed</span>
+            <span className="font-display text-2xl italic leading-tight">12 chapters</span>
+          </div>
+          {/* Bottom strip — cols 6-12, row 7 */}
+          <div className="col-span-12 md:col-span-7 row-span-1 bg-ink border-2 border-cream/20 rounded-2xl p-4 flex items-center justify-between text-cream">
+            <span className="font-mono text-[10px] uppercase tracking-widest opacity-70">Index · 2024 — 2026</span>
+            <span className="font-display text-lg italic">Browse the full archive →</span>
           </div>
         </div>
       </div>
