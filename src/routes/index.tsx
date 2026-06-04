@@ -98,6 +98,7 @@ function useSmoothAnchors() {
 
 function Index() {
   useScrollReveal();
+  useSmoothAnchors();
   return (
     <div className="bg-cream text-ink font-body min-h-screen overflow-x-clip selection:bg-magenta selection:text-cream">
       <Nav />
