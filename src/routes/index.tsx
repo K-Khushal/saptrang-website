@@ -129,7 +129,7 @@ function Hero() {
         <span className="italic text-cobalt">truth-tellers</span>.
       </h1>
 
-      <div className="mt-14 grid lg:grid-cols-12 gap-10 lg:gap-16 items-end">
+      <div className="mt-10 grid lg:grid-cols-12 gap-10 lg:gap-16 items-end">
         <div className="lg:col-span-5 reveal" style={{ animationDelay: '120ms' }}>
           <p className="text-lg lg:text-xl leading-relaxed text-ink/80 text-pretty max-w-[44ch]">
             Pulse is a global collective of filmmakers, photographers, artists and cultural makers — building screenings, workshops, residencies and a shared archive of the human gaze.
@@ -204,8 +204,8 @@ function CreditsMarquee() {
 /* ---------------- ABOUT ---------------- */
 function About() {
   return (
-    <section id="about" className="py-20 lg:py-28 px-6 lg:px-10 max-w-[1400px] mx-auto">
-      <div className="grid lg:grid-cols-12 gap-12 lg:gap-20 items-center">
+    <section id="about" className="py-16 lg:py-24 px-6 lg:px-10 max-w-[1400px] mx-auto">
+      <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-center">
         <div className="lg:col-span-7">
           <span className="inline-block bg-acid text-ink px-3 py-1 font-mono text-[10px] uppercase tracking-[0.25em] rotate-[-2deg]">
             About the Collective
@@ -256,8 +256,8 @@ function PastEvents() {
     { title: "Ghosts on 16mm — NYC", date: "May 2023", bg: "bg-ink", fg: "text-acid", tag: "Screening" },
   ];
   return (
-    <section className="py-24 lg:py-32 px-6 lg:px-10 max-w-[1400px] mx-auto">
-      <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-14">
+    <section className="py-16 lg:py-24 px-6 lg:px-10 max-w-[1400px] mx-auto">
+      <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-10">
         <h2 className="font-display text-4xl lg:text-6xl italic">Previous gatherings</h2>
         <p className="font-mono text-[11px] uppercase tracking-[0.25em] text-ink/60 max-w-sm">
           A contact sheet of recent screenings, workshops and residencies. Tap any card for the full archive.
@@ -292,9 +292,9 @@ function PastEvents() {
 /* ---------------- HIGHLIGHTS ---------------- */
 function Highlights() {
   return (
-    <section className="bg-ink text-cream py-24 lg:py-32 px-6 lg:px-10">
+    <section className="bg-ink text-cream py-16 lg:py-24 px-6 lg:px-10">
       <div className="max-w-[1400px] mx-auto">
-        <div className="flex items-end justify-between mb-12 gap-6">
+        <div className="flex items-end justify-between mb-10 gap-6">
           <div>
             <span className="inline-block bg-acid text-ink px-3 py-1 font-mono text-[10px] uppercase tracking-[0.25em]">Highlights reel</span>
             <h2 className="mt-5 font-display text-4xl lg:text-6xl italic">From the cutting room floor.</h2>
@@ -362,7 +362,7 @@ function Highlights() {
 /* ---------------- FEATURED CREATOR ---------------- */
 function FeaturedCreator() {
   return (
-    <section id="creators" className="bg-emerald text-cream py-24 lg:py-40 px-6 lg:px-10">
+    <section id="creators" className="bg-emerald text-cream py-16 lg:py-24 px-6 lg:px-10">
       <div className="max-w-[1400px] mx-auto grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
         <div className="lg:col-span-5 relative">
           <div className="absolute -inset-3 bg-magenta rounded-[2rem] rotate-[-3deg] -z-10" />
@@ -426,8 +426,8 @@ function Testimonials() {
     },
   ];
   return (
-    <section className="py-24 lg:py-32 px-6 lg:px-10 max-w-[1400px] mx-auto">
-      <div className="flex items-end justify-between gap-6 mb-12">
+    <section className="py-16 lg:py-24 px-6 lg:px-10 max-w-[1400px] mx-auto">
+      <div className="flex items-end justify-between gap-6 mb-10">
         <h2 className="font-display text-4xl lg:text-6xl italic">From the room.</h2>
         <span className="hidden md:inline-block font-mono text-[11px] uppercase tracking-[0.25em] text-ink/60">Voices of the collective</span>
       </div>
@@ -461,8 +461,8 @@ function Journal() {
     { tag: "Interview", tagBg: "bg-tangerine text-ink", title: "In conversation with Elara Vance on radical vulnerability", read: "12 min read", date: "Apr 18" },
   ];
   return (
-    <section id="journal" className="bg-cream py-24 lg:py-32 px-6 lg:px-10 max-w-[1400px] mx-auto">
-      <div className="flex items-end justify-between mb-14 gap-6">
+    <section id="journal" className="bg-cream py-16 lg:py-24 px-6 lg:px-10 max-w-[1400px] mx-auto">
+      <div className="flex items-end justify-between mb-10 gap-6">
         <h2 className="font-display text-4xl lg:text-6xl italic">The Journal</h2>
         <a href="#" className="font-mono text-[11px] uppercase tracking-[0.25em] underline underline-offset-[6px] decoration-magenta">All dispatches</a>
       </div>
@@ -495,8 +495,8 @@ function Upcoming() {
     { date: "Nov 04", time: "20:30", city: "Brooklyn", title: "Darkroom Rituals V", host: "Hands-on alternative chemistry", color: "bg-tangerine text-ink" },
   ];
   return (
-    <section id="events" className="py-24 lg:py-32 px-6 lg:px-10 max-w-[1400px] mx-auto">
-      <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-14">
+    <section id="events" className="py-16 lg:py-24 px-6 lg:px-10 max-w-[1400px] mx-auto">
+      <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-10">
         <div>
           <span className="inline-block bg-magenta text-cream px-3 py-1 font-mono text-[10px] uppercase tracking-[0.25em]">Upcoming</span>
           <h2 className="mt-5 font-display text-4xl lg:text-6xl italic">Save these dates.</h2>
@@ -555,7 +555,7 @@ function Partners() {
 /* ---------------- MEMBERSHIP CTA ---------------- */
 function MembershipCTA() {
   return (
-    <section id="apply" className="bg-magenta text-cream py-32 lg:py-48 px-6 lg:px-10 relative overflow-hidden">
+    <section id="apply" className="bg-magenta text-cream py-20 lg:py-28 px-6 lg:px-10 relative overflow-hidden">
       <div className="absolute -top-20 -right-20 size-96 rounded-full bg-acid mix-blend-screen opacity-60" />
       <div className="absolute -bottom-32 -left-20 size-[28rem] rounded-full bg-cobalt mix-blend-multiply opacity-40" />
       <div className="relative max-w-[1100px] mx-auto text-center">
@@ -575,7 +575,7 @@ function MembershipCTA() {
             Download the prospectus
           </a>
         </div>
-        <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl mx-auto text-left">
+        <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl mx-auto text-left">
           {[
             { k: "Apply by", v: "Sep 30, 2024" },
             { k: "Cohort starts", v: "Nov 04, 2024" },
@@ -644,7 +644,7 @@ function Footer() {
           </div>
         </div>
 
-        <div className="mt-20 pt-6 border-t border-cream/15 flex flex-col md:flex-row gap-4 justify-between font-mono text-[10px] uppercase tracking-[0.25em] text-cream/40">
+        <div className="mt-14 pt-6 border-t border-cream/15 flex flex-col md:flex-row gap-4 justify-between font-mono text-[10px] uppercase tracking-[0.25em] text-cream/40">
           <span>© 2024 Pulse Collective · A non-profit cultural foundation</span>
           <span>Recorded on location: Earth</span>
         </div>
