@@ -3,10 +3,6 @@ import heroImg from "@/assets/hero-collective.jpg";
 import creatorImg from "@/assets/creator-portrait.jpg";
 import aboutImg from "@/assets/about-workshop.jpg";
 import eventImg from "@/assets/event-screening.jpg";
-import creator2 from "@/assets/creator-2.jpg";
-import creator3 from "@/assets/creator-3.jpg";
-import creator4 from "@/assets/creator-4.jpg";
-import reelStill from "@/assets/reel-still.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -34,169 +30,18 @@ function Index() {
     <div className="bg-cream text-ink font-body min-h-screen overflow-x-clip selection:bg-magenta selection:text-cream">
       <Nav />
       <Hero />
-      <Reel />
       <CreditsMarquee />
       <About />
-      <Stats />
       <PastEvents />
       <Highlights />
       <FeaturedCreator />
-      <Spotlight />
       <Testimonials />
       <Journal />
       <Upcoming />
-      <Process />
       <Partners />
       <MembershipCTA />
       <Footer />
     </div>
-  );
-}
-
-/* ---------------- REEL ---------------- */
-function Reel() {
-  return (
-    <section className="px-6 lg:px-10 max-w-[1400px] mx-auto -mt-8 mb-20">
-      <div className="relative rounded-[1.5rem] overflow-hidden border-4 border-ink group cursor-pointer">
-        <img
-          src={reelStill}
-          alt="Community of creators laughing on a rooftop at golden hour"
-          width={1600}
-          height={900}
-          loading="lazy"
-          className="w-full aspect-[16/8] object-cover transition-transform duration-700 group-hover:scale-[1.03]"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-ink/70 via-ink/10 to-transparent" />
-        <div className="absolute top-6 left-6 flex items-center gap-3 font-mono text-[10px] uppercase tracking-[0.25em] text-cream">
-          <span className="size-2 rounded-full bg-magenta animate-pulse" />
-          Community reel · 2024
-        </div>
-        <div className="absolute top-6 right-6 bg-acid text-ink font-mono text-[10px] uppercase tracking-widest px-2 py-1">03:47</div>
-        <div className="absolute inset-0 grid place-items-center">
-          <button className="size-24 lg:size-32 rounded-full bg-magenta text-cream grid place-items-center text-4xl shadow-2xl group-hover:bg-acid group-hover:text-ink transition-colors">
-            ▶
-          </button>
-        </div>
-        <div className="absolute bottom-6 left-6 right-6 flex flex-wrap items-end justify-between gap-4 text-cream">
-          <div>
-            <div className="font-display italic text-3xl lg:text-5xl leading-none">A year inside the room.</div>
-            <div className="mt-2 font-mono text-[11px] uppercase tracking-[0.25em] opacity-80">12 cities · 64 gatherings · 1 collective heartbeat</div>
-          </div>
-          <div className="hidden md:flex gap-2 font-mono text-[10px] uppercase tracking-widest">
-            <span className="bg-cream/15 backdrop-blur px-3 py-1.5 rounded-full border border-cream/30">16mm</span>
-            <span className="bg-cream/15 backdrop-blur px-3 py-1.5 rounded-full border border-cream/30">Super 8</span>
-            <span className="bg-cream/15 backdrop-blur px-3 py-1.5 rounded-full border border-cream/30">Field audio</span>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ---------------- STATS ---------------- */
-function Stats() {
-  const stats = [
-    { n: "420+", k: "Members", sub: "Across 12 chapters", bg: "bg-magenta text-cream" },
-    { n: "64", k: "Gatherings", sub: "Held in 2024 alone", bg: "bg-cobalt text-cream" },
-    { n: "18", k: "Cities", sub: "From Beirut to Mexico City", bg: "bg-emerald text-cream" },
-    { n: "212", k: "Collaborations", sub: "Sparked between members", bg: "bg-tangerine text-ink" },
-  ];
-  return (
-    <section className="px-6 lg:px-10 max-w-[1400px] mx-auto pb-24 lg:pb-32">
-      <div className="flex items-end justify-between gap-6 mb-10">
-        <h2 className="font-display text-3xl lg:text-5xl italic max-w-2xl">
-          By the numbers — but the numbers are people.
-        </h2>
-        <span className="hidden md:inline-block font-mono text-[10px] uppercase tracking-[0.25em] text-ink/60">As of spring '24</span>
-      </div>
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-        {stats.map((s, i) => (
-          <div key={i} className={`${s.bg} border-4 border-ink rounded-2xl p-6 lg:p-8 aspect-square flex flex-col justify-between hover:-rotate-1 transition-transform`}>
-            <span className="font-mono text-[10px] uppercase tracking-[0.22em] opacity-80">No. {String(i+1).padStart(2,"0")}</span>
-            <div>
-              <div className="font-display text-6xl lg:text-7xl leading-none italic">{s.n}</div>
-              <div className="mt-3 font-display text-xl">{s.k}</div>
-              <div className="mt-1 font-mono text-[10px] uppercase tracking-widest opacity-80">{s.sub}</div>
-            </div>
-          </div>
-        ))}
-      </div>
-    </section>
-  );
-}
-
-/* ---------------- SPOTLIGHT (multiple creators) ---------------- */
-function Spotlight() {
-  const members = [
-    { img: creator2, name: "Tomas Okafor", role: "Filmmaker · Lagos → Berlin", work: "16mm shorts on diaspora and memory", color: "bg-tangerine text-ink" },
-    { img: creator3, name: "The Marseille darkroom", role: "Workshop · Salt & Grain residency", work: "Hands-on alt-process chemistry, weekly", color: "bg-magenta text-cream" },
-    { img: creator4, name: "Hana Sato", role: "Photographer · Kyoto", work: "Forty years of street portraits, now mentoring", color: "bg-cobalt text-cream" },
-  ];
-  return (
-    <section className="py-24 lg:py-32 px-6 lg:px-10 max-w-[1400px] mx-auto">
-      <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-14">
-        <div>
-          <span className="inline-block bg-emerald text-cream px-3 py-1 font-mono text-[10px] uppercase tracking-[0.25em]">Member spotlight</span>
-          <h2 className="mt-5 font-display text-4xl lg:text-6xl italic">Faces of the collective.</h2>
-        </div>
-        <p className="font-mono text-[11px] uppercase tracking-[0.25em] text-ink/60 max-w-sm">
-          A rotating cast of people, projects and chapters making the work that makes the room.
-        </p>
-      </div>
-      <div className="grid md:grid-cols-3 gap-6">
-        {members.map((m, i) => (
-          <article key={i} className={`group ${i === 1 ? "md:translate-y-8" : ""}`}>
-            <div className="relative rounded-2xl overflow-hidden border-4 border-ink">
-              <img src={m.img} alt={m.name} width={896} height={1152} loading="lazy" className="w-full aspect-[3/4] object-cover transition-transform duration-700 group-hover:scale-105" />
-              <span className={`absolute top-4 left-4 ${m.color} font-mono text-[10px] uppercase tracking-[0.22em] px-2 py-1 rounded-sm`}>
-                No. {String(i+12).padStart(3,"0")}
-              </span>
-            </div>
-            <div className="mt-5">
-              <h3 className="font-display text-2xl lg:text-3xl italic leading-tight">{m.name}</h3>
-              <div className="mt-1 font-mono text-[10px] uppercase tracking-widest text-ink/60">{m.role}</div>
-              <p className="mt-3 text-sm text-ink/75 leading-relaxed">{m.work}</p>
-            </div>
-          </article>
-        ))}
-      </div>
-    </section>
-  );
-}
-
-/* ---------------- PROCESS ---------------- */
-function Process() {
-  const steps = [
-    { n: "01", color: "bg-acid text-ink", title: "Send a letter, not a CV", body: "We read every application. Tell us what you're making, what haunts you, what you're trying to figure out." },
-    { n: "02", color: "bg-cobalt text-cream", title: "A conversation, not an interview", body: "Two existing members meet you over coffee, a walk, or a video call. No tests, no decks." },
-    { n: "03", color: "bg-magenta text-cream", title: "Your first gathering", body: "Show up. Bring something — a print, a rough cut, a question. The room takes it from there." },
-    { n: "04", color: "bg-emerald text-cream", title: "Stay, and shape it", body: "After three months, you can pitch a workshop, host a screening, or start a chapter where you live." },
-  ];
-  return (
-    <section className="py-24 lg:py-32 px-6 lg:px-10 max-w-[1400px] mx-auto">
-      <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 mb-14">
-        <div className="lg:col-span-5">
-          <span className="inline-block bg-ink text-acid px-3 py-1 font-mono text-[10px] uppercase tracking-[0.25em]">How to join</span>
-          <h2 className="mt-5 font-display text-4xl lg:text-6xl italic leading-[0.95]">
-            Four steps, none of them a form.
-          </h2>
-        </div>
-        <p className="lg:col-span-6 lg:col-start-7 text-lg leading-relaxed text-ink/80 self-end">
-          We're not gatekeepers — we're curators of attention. Membership is sliding-scale, twice a year, and built around one principle: the people in the room decide who joins it.
-        </p>
-      </div>
-      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
-        {steps.map((s) => (
-          <div key={s.n} className="border-4 border-ink rounded-2xl bg-cream p-6 lg:p-7 flex flex-col gap-5 min-h-[18rem] hover:-translate-y-1 transition-transform">
-            <div className={`${s.color} size-14 rounded-full grid place-items-center font-display text-2xl italic border-2 border-ink`}>{s.n}</div>
-            <div>
-              <h3 className="font-display text-2xl italic leading-tight">{s.title}</h3>
-              <p className="mt-3 text-sm text-ink/75 leading-relaxed">{s.body}</p>
-            </div>
-          </div>
-        ))}
-      </div>
-    </section>
   );
 }
 
@@ -521,19 +366,19 @@ function FeaturedCreator() {
 function Testimonials() {
   const quotes = [
     {
-      bg: "bg-acid", fg: "text-ink", avatar: creator4,
+      bg: "bg-acid", fg: "text-ink",
       quote: "Pulse gave me permission to fail visually. I found my tribe in the shadows of a projection booth.",
-      name: "Hana Sato", role: "Photographer · Kyoto",
+      name: "Yara N.", role: "Photographer · Beirut",
     },
     {
-      bg: "bg-tangerine", fg: "text-ink", avatar: creator2,
+      bg: "bg-tangerine", fg: "text-ink",
       quote: "Every gathering feels like a campfire with people who actually listen. I leave with twelve new ideas and three new collaborators.",
-      name: "Tomas Okafor", role: "Documentary maker · Berlin",
+      name: "Kojo A.", role: "Documentary maker · Accra",
     },
     {
-      bg: "bg-cobalt", fg: "text-cream", avatar: creatorImg,
+      bg: "bg-cobalt", fg: "text-cream",
       quote: "It's the closest thing to an art school I never went to — minus the tuition, plus the punk.",
-      name: "Elena Roussel", role: "Cinematographer · Marseille",
+      name: "Mira S.", role: "Visual artist · Mexico City",
     },
   ];
   return (
@@ -551,7 +396,7 @@ function Testimonials() {
             <div className="font-display text-6xl leading-none italic">"</div>
             <blockquote className="font-display text-2xl lg:text-3xl leading-snug">{q.quote}</blockquote>
             <figcaption className="mt-8 flex items-center gap-3">
-              <img src={q.avatar} alt={q.name} width={120} height={120} loading="lazy" className="size-12 rounded-full object-cover border-2 border-ink" />
+              <span className="size-10 rounded-full bg-ink text-cream grid place-items-center font-mono text-xs">{q.name[0]}</span>
               <div>
                 <div className="font-semibold">{q.name}</div>
                 <div className="text-xs opacity-80 font-mono uppercase tracking-widest">{q.role}</div>
