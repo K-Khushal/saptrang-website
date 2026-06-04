@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useEffect } from "react";
 import heroImg from "@/assets/hero-collective.jpg";
 import creatorImg from "@/assets/creator-portrait.jpg";
 import aboutImg from "@/assets/about-workshop.jpg";
@@ -25,21 +26,49 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
+function useScrollReveal() {
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const els = document.querySelectorAll<HTMLElement>(".reveal-on-scroll");
+    if (!("IntersectionObserver" in window)) {
+      els.forEach((el) => el.classList.add("is-visible"));
+      return;
+    }
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const el = entry.target as HTMLElement;
+            const delay = el.dataset.revealDelay ?? "0";
+            el.style.transitionDelay = `${delay}ms`;
+            el.classList.add("is-visible");
+            io.unobserve(el);
+          }
+        });
+      },
+      { threshold: 0.12, rootMargin: "0px 0px -8% 0px" }
+    );
+    els.forEach((el) => io.observe(el));
+    return () => io.disconnect();
+  }, []);
+}
+
 function Index() {
+  useScrollReveal();
   return (
     <div className="bg-cream text-ink font-body min-h-screen overflow-x-clip selection:bg-magenta selection:text-cream">
       <Nav />
       <Hero />
-      <CreditsMarquee />
-      <About />
-      <PastEvents />
-      <Highlights />
-      <FeaturedCreator />
-      <Testimonials />
-      <Journal />
-      <Upcoming />
-      <Partners />
-      <MembershipCTA />
+      <div className="reveal-on-scroll"><CreditsMarquee /></div>
+      <div className="reveal-on-scroll"><About /></div>
+      <div className="reveal-on-scroll"><PastEvents /></div>
+      <div className="reveal-on-scroll"><Highlights /></div>
+      <div className="reveal-on-scroll"><FeaturedCreator /></div>
+      <div className="reveal-on-scroll"><Testimonials /></div>
+      <div className="reveal-on-scroll"><Journal /></div>
+      <div className="reveal-on-scroll"><Upcoming /></div>
+      <div className="reveal-on-scroll"><Partners /></div>
+      <div className="reveal-on-scroll"><MembershipCTA /></div>
       <Footer />
     </div>
   );
