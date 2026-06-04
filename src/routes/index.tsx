@@ -521,19 +521,19 @@ function FeaturedCreator() {
 function Testimonials() {
   const quotes = [
     {
-      bg: "bg-acid", fg: "text-ink",
+      bg: "bg-acid", fg: "text-ink", avatar: creator4,
       quote: "Pulse gave me permission to fail visually. I found my tribe in the shadows of a projection booth.",
-      name: "Yara N.", role: "Photographer · Beirut",
+      name: "Hana Sato", role: "Photographer · Kyoto",
     },
     {
-      bg: "bg-tangerine", fg: "text-ink",
+      bg: "bg-tangerine", fg: "text-ink", avatar: creator2,
       quote: "Every gathering feels like a campfire with people who actually listen. I leave with twelve new ideas and three new collaborators.",
-      name: "Kojo A.", role: "Documentary maker · Accra",
+      name: "Tomas Okafor", role: "Documentary maker · Berlin",
     },
     {
-      bg: "bg-cobalt", fg: "text-cream",
+      bg: "bg-cobalt", fg: "text-cream", avatar: creatorImg,
       quote: "It's the closest thing to an art school I never went to — minus the tuition, plus the punk.",
-      name: "Mira S.", role: "Visual artist · Mexico City",
+      name: "Elena Roussel", role: "Cinematographer · Marseille",
     },
   ];
   return (
