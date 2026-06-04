@@ -53,6 +53,49 @@ function useScrollReveal() {
   }, []);
 }
 
+function useSmoothAnchors() {
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const easeInOutCubic = (t: number) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
+
+    const scrollTo = (targetY: number, duration = 900) => {
+      if (prefersReduced) {
+        window.scrollTo(0, targetY);
+        return;
+      }
+      const startY = window.scrollY;
+      const diff = targetY - startY;
+      if (Math.abs(diff) < 2) return;
+      const start = performance.now();
+      const step = (now: number) => {
+        const elapsed = now - start;
+        const t = Math.min(1, elapsed / duration);
+        window.scrollTo(0, startY + diff * easeInOutCubic(t));
+        if (t < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    };
+
+    const onClick = (e: MouseEvent) => {
+      const a = (e.target as HTMLElement | null)?.closest("a");
+      if (!a) return;
+      const href = a.getAttribute("href");
+      if (!href || !href.startsWith("#") || href === "#") return;
+      const id = href.slice(1);
+      const el = document.getElementById(id);
+      if (!el) return;
+      e.preventDefault();
+      const top = el.getBoundingClientRect().top + window.scrollY - 72;
+      scrollTo(top);
+      history.replaceState(null, "", `#${id}`);
+    };
+
+    document.addEventListener("click", onClick);
+    return () => document.removeEventListener("click", onClick);
+  }, []);
+}
+
 function Index() {
   useScrollReveal();
   return (
