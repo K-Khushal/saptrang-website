@@ -204,8 +204,8 @@ function CreditsMarquee() {
 /* ---------------- ABOUT ---------------- */
 function About() {
   return (
-    <section id="about" className="py-28 lg:py-40 px-6 lg:px-10 max-w-[1400px] mx-auto">
-      <div className="grid lg:grid-cols-12 gap-12 lg:gap-20 items-start">
+    <section id="about" className="py-20 lg:py-28 px-6 lg:px-10 max-w-[1400px] mx-auto">
+      <div className="grid lg:grid-cols-12 gap-12 lg:gap-20 items-center">
         <div className="lg:col-span-7">
           <span className="inline-block bg-acid text-ink px-3 py-1 font-mono text-[10px] uppercase tracking-[0.25em] rotate-[-2deg]">
             About the Collective
@@ -224,7 +224,7 @@ function About() {
           </div>
         </div>
 
-        <div className="lg:col-span-5 lg:sticky lg:top-24">
+        <div className="lg:col-span-5">
           <div className="relative">
             <img
               src={aboutImg}
