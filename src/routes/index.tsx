@@ -122,7 +122,7 @@ function Index() {
 function Nav() {
   return (
     <nav className="sticky top-0 z-50 backdrop-blur-md bg-cream/80 border-b border-ink/10">
-      <div className="max-w-[1400px] mx-auto px-6 lg:px-10 h-16 flex items-center justify-between">
+      <div className="max-w-[1400px] mx-auto px-5 lg:px-10 h-16 flex items-center justify-between">
         <a href="#" className="flex items-center gap-2 font-display text-2xl font-semibold italic tracking-tight">
           <span className="inline-block size-3 rounded-full bg-magenta animate-pulse" />
           Pulse<span className="text-magenta">.</span>
@@ -148,7 +148,7 @@ function Nav() {
 /* ---------------- HERO ---------------- */
 function Hero() {
   return (
-    <header className="relative px-6 lg:px-10 pt-16 lg:pt-24 pb-24 max-w-[1400px] mx-auto">
+    <header className="relative px-5 lg:px-10 pt-10 lg:pt-24 pb-14 lg:pb-24 max-w-[1400px] mx-auto">
       {/* floating color stickers */}
       <div className="absolute top-10 right-8 size-24 rounded-full bg-acid animate-float hidden md:block" style={{ ['--r' as any]: '-8deg' }} />
       <div className="absolute top-[55%] left-4 size-16 rounded-full bg-cobalt animate-float hidden md:block" style={{ animationDelay: '1.2s' }} />
@@ -173,12 +173,12 @@ function Hero() {
         <span className="italic text-cobalt">truth-tellers</span>.
       </h1>
 
-      <div className="mt-10 grid lg:grid-cols-12 gap-10 lg:gap-16 items-end">
+      <div className="mt-6 lg:mt-10 grid lg:grid-cols-12 gap-10 lg:gap-16 items-end">
         <div className="lg:col-span-5 reveal" style={{ animationDelay: '120ms' }}>
           <p className="text-lg lg:text-xl leading-relaxed text-ink/80 text-pretty max-w-[44ch]">
             Pulse is a global collective of filmmakers, photographers, artists and cultural makers — building screenings, workshops, residencies and a shared archive of the human gaze.
           </p>
-          <div className="mt-10 flex flex-wrap items-center gap-6">
+          <div className="mt-6 lg:mt-10 flex flex-wrap items-center gap-4 lg:gap-6">
             <a
               href="#apply"
               className="inline-flex items-center gap-3 bg-ink text-cream pl-6 pr-2 py-2 rounded-full text-sm font-medium hover:bg-magenta transition-colors"
@@ -248,7 +248,7 @@ function CreditsMarquee() {
 /* ---------------- ABOUT ---------------- */
 function About() {
   return (
-    <section id="about" className="py-16 lg:py-24 px-6 lg:px-10 max-w-[1400px] mx-auto">
+    <section id="about" className="py-10 lg:py-24 px-5 lg:px-10 max-w-[1400px] mx-auto">
       <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-center">
         <div className="lg:col-span-7">
           <span className="inline-block bg-acid text-ink px-3 py-1 font-mono text-[10px] uppercase tracking-[0.25em] rotate-[-2deg]">
@@ -258,7 +258,7 @@ function About() {
             We don't believe in <span className="italic text-magenta">audiences</span>.<br />
             We believe in <span className="italic text-cobalt">accomplices</span>.
           </h2>
-          <div className="mt-10 columns-1 md:columns-2 gap-12 text-base leading-relaxed text-ink/80">
+          <div className="mt-6 lg:mt-10 columns-1 md:columns-2 gap-12 text-base leading-relaxed text-ink/80">
             <p className="mb-6">
               Pulse began in a basement screening room with twelve chairs, a borrowed projector, and a stubborn refusal to flatten culture into content. Six years later, we're still that room — just bigger, louder, and with better coffee.
             </p>
@@ -300,8 +300,8 @@ function PastEvents() {
     { title: "Ghosts on 16mm — NYC", date: "May 2023", bg: "bg-ink", fg: "text-acid", tag: "Screening" },
   ];
   return (
-    <section className="py-16 lg:py-24 px-6 lg:px-10 max-w-[1400px] mx-auto">
-      <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-10">
+    <section className="py-10 lg:py-24 px-5 lg:px-10 max-w-[1400px] mx-auto">
+      <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4 lg:gap-6 mb-6 lg:mb-10">
         <h2 className="font-display text-4xl lg:text-6xl italic">Previous gatherings</h2>
         <p className="font-mono text-[11px] uppercase tracking-[0.25em] text-ink/60 max-w-sm">
           A contact sheet of recent screenings, workshops and residencies. Tap any card for the full archive.
@@ -312,7 +312,7 @@ function PastEvents() {
           <a
             key={i}
             href="#"
-            className={`group ${e.bg} ${e.fg} rounded-2xl p-6 lg:p-8 aspect-[4/5] flex flex-col justify-between border-4 border-ink hover:-translate-y-2 hover:rotate-[-1deg] transition-transform`}
+            className={`group ${e.bg} ${e.fg} rounded-2xl p-5 lg:p-8 aspect-[4/5] flex flex-col justify-between border-4 border-ink hover:-translate-y-2 hover:rotate-[-1deg] transition-transform`}
           >
             <div className="flex items-center justify-between">
               <span className="font-mono text-[10px] uppercase tracking-[0.2em] opacity-80">{e.tag}</span>
@@ -336,9 +336,9 @@ function PastEvents() {
 /* ---------------- HIGHLIGHTS ---------------- */
 function Highlights() {
   return (
-    <section className="bg-ink text-cream py-16 lg:py-24 px-6 lg:px-10">
+    <section className="bg-ink text-cream py-10 lg:py-24 px-5 lg:px-10">
       <div className="max-w-[1400px] mx-auto">
-        <div className="flex items-end justify-between mb-10 gap-6">
+        <div className="flex items-end justify-between mb-6 lg:mb-10 gap-4 lg:gap-6">
           <div>
             <span className="inline-block bg-acid text-ink px-3 py-1 font-mono text-[10px] uppercase tracking-[0.25em]">Highlights reel</span>
             <h2 className="mt-5 font-display text-4xl lg:text-6xl italic">From the cutting room floor.</h2>
@@ -406,8 +406,8 @@ function Highlights() {
 /* ---------------- FEATURED CREATOR ---------------- */
 function FeaturedCreator() {
   return (
-    <section id="creators" className="bg-emerald text-cream py-16 lg:py-24 px-6 lg:px-10">
-      <div className="max-w-[1400px] mx-auto grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+    <section id="creators" className="bg-emerald text-cream py-10 lg:py-24 px-5 lg:px-10">
+      <div className="max-w-[1400px] mx-auto grid lg:grid-cols-12 gap-8 lg:gap-12 lg:gap-16 items-center">
         <div className="lg:col-span-5 relative">
           <div className="absolute -inset-3 bg-magenta rounded-[2rem] rotate-[-3deg] -z-10" />
           <img
@@ -430,7 +430,7 @@ function FeaturedCreator() {
           <blockquote className="mt-10 font-display text-2xl lg:text-3xl leading-snug text-cream/90 italic">
             "The camera isn't a tool of capture — it's a tool of release. When we film, we're setting a moment free from the prison of memory."
           </blockquote>
-          <div className="mt-10 flex flex-wrap gap-8 items-center">
+          <div className="mt-6 lg:mt-10 flex flex-wrap gap-5 lg:gap-8 items-center">
             <div>
               <div className="font-mono text-[10px] uppercase tracking-widest opacity-70">Practice</div>
               <div className="font-display text-xl">Cinematographer · Marseille</div>
@@ -470,8 +470,8 @@ function Testimonials() {
     },
   ];
   return (
-    <section className="py-16 lg:py-24 px-6 lg:px-10 max-w-[1400px] mx-auto">
-      <div className="flex items-end justify-between gap-6 mb-10">
+    <section className="py-10 lg:py-24 px-5 lg:px-10 max-w-[1400px] mx-auto">
+      <div className="flex items-end justify-between gap-4 lg:gap-6 mb-6 lg:mb-10">
         <h2 className="font-display text-4xl lg:text-6xl italic">From the room.</h2>
         <span className="hidden md:inline-block font-mono text-[11px] uppercase tracking-[0.25em] text-ink/60">Voices of the collective</span>
       </div>
@@ -479,7 +479,7 @@ function Testimonials() {
         {quotes.map((q, i) => (
           <figure
             key={i}
-            className={`${q.bg} ${q.fg} rounded-2xl p-7 lg:p-9 border-4 border-ink flex flex-col justify-between min-h-[24rem] ${i % 2 ? "lg:translate-y-6" : ""}`}
+            className={`${q.bg} ${q.fg} rounded-2xl p-6 lg:p-9 border-4 border-ink flex flex-col justify-between min-h-[18rem] lg:min-h-[24rem] ${i % 2 ? "lg:translate-y-6" : ""}`}
           >
             <div className="font-display text-6xl leading-none italic">"</div>
             <blockquote className="font-display text-2xl lg:text-3xl leading-snug">{q.quote}</blockquote>
@@ -505,12 +505,12 @@ function Journal() {
     { tag: "Interview", tagBg: "bg-tangerine text-ink", title: "In conversation with Elara Vance on radical vulnerability", read: "12 min read", date: "Apr 18" },
   ];
   return (
-    <section id="journal" className="bg-cream py-16 lg:py-24 px-6 lg:px-10 max-w-[1400px] mx-auto">
-      <div className="flex items-end justify-between mb-10 gap-6">
+    <section id="journal" className="bg-cream py-10 lg:py-24 px-5 lg:px-10 max-w-[1400px] mx-auto">
+      <div className="flex items-end justify-between mb-6 lg:mb-10 gap-4 lg:gap-6">
         <h2 className="font-display text-4xl lg:text-6xl italic">The Journal</h2>
         <a href="#" className="font-mono text-[11px] uppercase tracking-[0.25em] underline underline-offset-[6px] decoration-magenta">All dispatches</a>
       </div>
-      <div className="grid md:grid-cols-3 gap-10">
+      <div className="grid md:grid-cols-3 gap-6 lg:gap-10">
         {articles.map((a, i) => (
           <article key={i} className="group cursor-pointer">
             <div className={`aspect-[4/3] rounded-2xl border-4 border-ink overflow-hidden relative ${i === 0 ? "bg-magenta" : i === 1 ? "bg-cobalt" : "bg-tangerine"}`}>
@@ -539,8 +539,8 @@ function Upcoming() {
     { date: "Nov 04", time: "20:30", city: "Brooklyn", title: "Darkroom Rituals V", host: "Hands-on alternative chemistry", color: "bg-tangerine text-ink" },
   ];
   return (
-    <section id="events" className="py-16 lg:py-24 px-6 lg:px-10 max-w-[1400px] mx-auto">
-      <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-10">
+    <section id="events" className="py-10 lg:py-24 px-5 lg:px-10 max-w-[1400px] mx-auto">
+      <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4 lg:gap-6 mb-6 lg:mb-10">
         <div>
           <span className="inline-block bg-magenta text-cream px-3 py-1 font-mono text-[10px] uppercase tracking-[0.25em]">Upcoming</span>
           <h2 className="mt-5 font-display text-4xl lg:text-6xl italic">Save these dates.</h2>
@@ -585,7 +585,7 @@ function Partners() {
   );
   return (
     <section className="bg-acid border-y-4 border-ink py-8 overflow-hidden">
-      <div className="max-w-[1400px] mx-auto px-6 lg:px-10 mb-4 flex items-center justify-between">
+      <div className="max-w-[1400px] mx-auto px-5 lg:px-10 mb-4 flex items-center justify-between">
         <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-ink/70">In good company · partners & collaborators</span>
         <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-ink/70">Year 06</span>
       </div>
@@ -599,18 +599,18 @@ function Partners() {
 /* ---------------- MEMBERSHIP CTA ---------------- */
 function MembershipCTA() {
   return (
-    <section id="apply" className="bg-magenta text-cream py-20 lg:py-28 px-6 lg:px-10 relative overflow-hidden">
+    <section id="apply" className="bg-magenta text-cream py-14 lg:py-28 px-5 lg:px-10 relative overflow-hidden">
       <div className="absolute -top-20 -right-20 size-96 rounded-full bg-acid mix-blend-screen opacity-60" />
       <div className="absolute -bottom-32 -left-20 size-[28rem] rounded-full bg-cobalt mix-blend-multiply opacity-40" />
       <div className="relative max-w-[1100px] mx-auto text-center">
         <span className="inline-block bg-acid text-ink px-3 py-1 font-mono text-[10px] uppercase tracking-[0.25em]">Membership · Winter Cohort</span>
-        <h2 className="mt-8 font-display text-[clamp(4rem,12vw,12rem)] leading-[0.85] italic tracking-tight">
+        <h2 className="mt-4 lg:mt-8 font-display text-[clamp(4rem,12vw,12rem)] leading-[0.85] italic tracking-tight">
           Belong<span className="text-acid">.</span>
         </h2>
-        <p className="mt-8 max-w-xl mx-auto text-lg lg:text-xl text-cream/90">
+        <p className="mt-6 lg:mt-8 max-w-xl mx-auto text-lg lg:text-xl text-cream/90">
           We accept applications twice a year. We look for intent, curiosity, and a distinct perspective on the world. Tuition is sliding-scale; the only requirement is you bring your gaze.
         </p>
-        <div className="mt-12 flex flex-wrap justify-center gap-4">
+        <div className="mt-8 lg:mt-12 flex flex-wrap justify-center gap-4">
           <a href="#" className="inline-flex items-center gap-3 bg-ink text-acid pl-7 pr-2 py-3 rounded-full text-base font-medium hover:bg-cream hover:text-magenta transition-colors">
             Submit application
             <span className="size-10 rounded-full bg-acid text-ink grid place-items-center text-lg">↗</span>
@@ -619,7 +619,7 @@ function MembershipCTA() {
             Download the prospectus
           </a>
         </div>
-        <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl mx-auto text-left">
+        <div className="mt-10 lg:mt-12 grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl mx-auto text-left">
           {[
             { k: "Apply by", v: "Sep 30, 2024" },
             { k: "Cohort starts", v: "Nov 04, 2024" },
@@ -640,9 +640,9 @@ function MembershipCTA() {
 /* ---------------- FOOTER ---------------- */
 function Footer() {
   return (
-    <footer className="bg-ink text-cream/70 pt-24 pb-10 px-6 lg:px-10">
+    <footer className="bg-ink text-cream/70 pt-14 lg:pt-24 pb-10 px-5 lg:px-10">
       <div className="max-w-[1400px] mx-auto">
-        <div className="grid lg:grid-cols-12 gap-12">
+        <div className="grid lg:grid-cols-12 gap-8 lg:gap-12">
           <div className="lg:col-span-5">
             <div className="flex items-center gap-3 mb-6">
               <span className="size-3 rounded-full bg-magenta animate-pulse" />
@@ -651,7 +651,7 @@ function Footer() {
             <p className="max-w-md text-sm leading-relaxed">
               A non-profit cultural community for filmmakers, photographers, artists and storytellers. Built in twelve cities by the people inside it.
             </p>
-            <div className="mt-8 flex gap-3 flex-wrap">
+            <div className="mt-6 lg:mt-8 flex gap-3 flex-wrap">
               {["Instagram","Vimeo","Substack","Letterboxd","Are.na"].map(s => (
                 <a key={s} href="#" className="border border-cream/30 rounded-full px-4 py-1.5 text-xs font-mono uppercase tracking-widest hover:bg-acid hover:text-ink hover:border-acid transition-colors">{s}</a>
               ))}
@@ -688,7 +688,7 @@ function Footer() {
           </div>
         </div>
 
-        <div className="mt-14 pt-6 border-t border-cream/15 flex flex-col md:flex-row gap-4 justify-between font-mono text-[10px] uppercase tracking-[0.25em] text-cream/40">
+        <div className="mt-10 lg:mt-14 pt-6 border-t border-cream/15 flex flex-col md:flex-row gap-4 justify-between font-mono text-[10px] uppercase tracking-[0.25em] text-cream/40">
           <span>© 2024 Pulse Collective · A non-profit cultural foundation</span>
           <span>Recorded on location: Earth</span>
         </div>
