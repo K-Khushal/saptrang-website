@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import heroImg from "@/assets/hero-collective.jpg";
 import creatorImg from "@/assets/creator-portrait.jpg";
 import aboutImg from "@/assets/about-workshop.jpg";
@@ -120,28 +120,87 @@ function Index() {
 
 /* ---------------- NAV ---------------- */
 function Nav() {
+  const [open, setOpen] = useState(false);
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [open]);
+
+  const links = [
+    { href: "#about", label: "Manifesto", color: "hover:text-magenta" },
+    { href: "#events", label: "Gatherings", color: "hover:text-cobalt" },
+    { href: "#creators", label: "Creators", color: "hover:text-emerald" },
+    { href: "#journal", label: "Journal", color: "hover:text-tangerine" },
+  ];
+
   return (
-    <nav className="sticky top-0 z-50 backdrop-blur-md bg-cream/80 border-b border-ink/10">
-      <div className="max-w-[1400px] mx-auto px-5 lg:px-10 h-16 flex items-center justify-between">
-        <a href="#" className="flex items-center gap-2 font-display text-2xl font-semibold italic tracking-tight">
-          <span className="inline-block size-3 rounded-full bg-magenta animate-pulse" />
-          Pulse<span className="text-magenta">.</span>
-        </a>
-        <div className="hidden md:flex gap-8 text-[11px] uppercase tracking-[0.22em] font-mono">
-          <a href="#about" className="hover:text-magenta transition-colors">Manifesto</a>
-          <a href="#events" className="hover:text-cobalt transition-colors">Gatherings</a>
-          <a href="#creators" className="hover:text-emerald transition-colors">Creators</a>
-          <a href="#journal" className="hover:text-tangerine transition-colors">Journal</a>
+    <>
+      <nav className="sticky top-0 z-50 backdrop-blur-md bg-cream/80 border-b border-ink/10">
+        <div className="max-w-[1400px] mx-auto px-5 lg:px-10 h-16 flex items-center justify-between">
+          <a href="#" className="flex items-center gap-2 font-display text-2xl font-semibold italic tracking-tight">
+            <span className="inline-block size-3 rounded-full bg-magenta animate-pulse" />
+            Pulse<span className="text-magenta">.</span>
+          </a>
+
+          {/* Desktop links */}
+          <div className="hidden md:flex gap-8 text-[11px] uppercase tracking-[0.22em] font-mono">
+            {links.map((l) => (
+              <a key={l.href} href={l.href} className={`${l.color} transition-colors`}>{l.label}</a>
+            ))}
+          </div>
+
+          <div className="flex items-center gap-3">
+            <a
+              href="#apply"
+              className="group inline-flex items-center gap-2 bg-magenta text-cream pl-4 pr-2 py-2 rounded-full text-[11px] uppercase tracking-[0.18em] font-mono font-medium hover:bg-ink transition-colors"
+            >
+              Apply
+              <span className="size-6 rounded-full bg-cream text-magenta grid place-items-center text-base leading-none group-hover:bg-acid group-hover:text-ink transition-colors">→</span>
+            </a>
+
+            {/* Mobile hamburger */}
+            <button
+              aria-label="Toggle menu"
+              onClick={() => setOpen((v) => !v)}
+              className="md:hidden relative size-10 flex flex-col items-center justify-center gap-[5px]"
+            >
+              <span className={`block h-[2px] bg-ink rounded-full transition-all duration-300 origin-center ${open ? "w-5 rotate-45 translate-y-[7px]" : "w-5"}`} />
+              <span className={`block h-[2px] bg-ink rounded-full transition-all duration-300 ${open ? "w-0 opacity-0" : "w-5"}`} />
+              <span className={`block h-[2px] bg-ink rounded-full transition-all duration-300 origin-center ${open ? "w-5 -rotate-45 -translate-y-[7px]" : "w-5"}`} />
+            </button>
+          </div>
         </div>
-        <a
-          href="#apply"
-          className="group inline-flex items-center gap-2 bg-magenta text-cream pl-4 pr-2 py-2 rounded-full text-[11px] uppercase tracking-[0.18em] font-mono font-medium hover:bg-ink transition-colors"
-        >
-          Apply
-          <span className="size-6 rounded-full bg-cream text-magenta grid place-items-center text-base leading-none group-hover:bg-acid group-hover:text-ink transition-colors">→</span>
-        </a>
+      </nav>
+
+      {/* Mobile overlay */}
+      <div
+        className={`fixed inset-0 z-40 bg-cream transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] md:hidden ${open ? "translate-x-0" : "translate-x-full"}`}
+      >
+        <div className="flex flex-col items-center justify-center h-full gap-8">
+          {links.map((l, i) => (
+            <a
+              key={l.href}
+              href={l.href}
+              onClick={() => setOpen(false)}
+              className={`font-display text-3xl font-semibold italic ${l.color} transition-all duration-300 ${open ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
+              style={{ transitionDelay: open ? `${120 + i * 60}ms` : "0ms" }}
+            >
+              {l.label}
+            </a>
+          ))}
+          <a
+            href="#apply"
+            onClick={() => setOpen(false)}
+            className={`mt-4 inline-flex items-center gap-2 bg-ink text-cream pl-6 pr-2 py-3 rounded-full text-sm font-medium transition-all duration-300 ${open ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
+            style={{ transitionDelay: open ? "420ms" : "0ms" }}
+          >
+            Apply to Join
+            <span className="size-8 rounded-full bg-acid text-ink grid place-items-center text-lg">↗</span>
+          </a>
+        </div>
       </div>
-    </nav>
+    </>
   );
 }
 
