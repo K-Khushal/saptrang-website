@@ -129,7 +129,7 @@ function Nav() {
 
   const links = [
     { href: "#about", label: "Manifesto", color: "hover:text-magenta" },
-    { href: "#events", label: "Gatherings", color: "hover:text-cobalt" },
+    { href: "/events", label: "Gatherings", color: "hover:text-cobalt" },
     { href: "#creators", label: "Creators", color: "hover:text-emerald" },
     { href: "#journal", label: "Journal", color: "hover:text-tangerine" },
   ];
