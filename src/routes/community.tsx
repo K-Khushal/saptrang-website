@@ -88,7 +88,7 @@ function Header() {
 /* ---------------- Left rail ---------------- */
 const navItems = [
   { label: "Feed", to: "/community" as const, active: true },
-  { label: "Gatherings", to: "/community" as const },
+  { label: "Gatherings", to: "/events" as const },
   { label: "Open calls", to: "/community" as const },
   { label: "Chapters", to: "/community" as const },
   { label: "Bookmarks", to: "/community" as const },
