@@ -330,62 +330,64 @@ function FeaturedCard({ event }: { event: typeof featuredEvent }) {
   );
 }
 
-/* ─── Event Row ─── */
+/* ─── Horizon Poster ─── */
 
-function EventRow({ event, first }: { event: typeof upcomingEvents[0]; first: boolean }) {
-  return (
-    <article className={`py-7 ${first ? "" : "border-t border-ink/10"} flex flex-col lg:flex-row lg:items-center gap-4 lg:gap-8 group`}>
-      <div className="flex items-center gap-4 shrink-0 lg:w-48">
-        <span className={`grid size-10 place-items-center rounded-full ${event.color} text-cream text-sm font-medium`}>
-          {event.type[0]}
-        </span>
-        <div>
-          <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-ink/50">{event.type}</p>
-          <p className="font-mono text-[12px] uppercase tracking-[0.14em]">{event.date}</p>
-        </div>
-      </div>
-
-      <div className="flex-1 min-w-0">
-        <h3 className="font-display text-2xl lg:text-3xl italic leading-tight group-hover:text-magenta transition-colors">
-          {event.title}
-        </h3>
-        <p className="mt-1 text-sm text-ink/60 leading-relaxed max-w-lg">{event.brief}</p>
-      </div>
-
-      <div className="flex items-center gap-4 shrink-0">
-        <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-ink/50 flex items-center gap-1.5">
-          <MapPin className="size-3.5" />
-          {event.location}
-        </span>
-        <button className="size-10 rounded-full border border-ink/10 grid place-items-center hover:bg-ink hover:text-cream transition-colors">
-          <ArrowUpRight className="size-4" />
-        </button>
-      </div>
-    </article>
-  );
-}
-
-/* ─── Past Card ─── */
-
-function PastCard({ event, index }: { event: typeof pastEvents[0]; index: number }) {
+function HorizonPoster({ event }: { event: typeof upcomingEvents[0] }) {
   return (
     <a
       href="#"
-      className={`group ${event.color} rounded-2xl p-5 lg:p-7 aspect-[4/5] flex flex-col justify-between border-4 border-ink hover:-translate-y-2 hover:rotate-[-1deg] transition-transform`}
+      className="group relative bg-cream border border-ink/15 rounded-2xl p-7 lg:p-9 flex flex-col justify-between min-h-[320px] hover:border-ink transition-colors overflow-hidden"
     >
-      <div className="flex items-center justify-between">
-        <span className="font-mono text-[10px] uppercase tracking-[0.2em] opacity-80">{event.type}</span>
-        <span className="font-mono text-[10px] uppercase tracking-[0.2em] opacity-80">{event.date}</span>
+      <span className={`absolute top-0 left-0 h-1 w-full ${event.color}`} />
+      <div className="flex items-start justify-between gap-4">
+        <div>
+          <p className={`font-mono text-[10px] uppercase tracking-[0.25em] ${event.tagColor}`}>{event.type}</p>
+          <p className="mt-1 font-mono text-[11px] uppercase tracking-[0.18em] text-ink/60">{event.date}</p>
+        </div>
+        <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-ink/40 flex items-center gap-1.5">
+          <MapPin className="size-3" />
+          {event.location}
+        </span>
       </div>
+
       <div>
-        <div className="font-mono text-[10px] uppercase tracking-[0.25em] opacity-70 mb-3">No. {String(index + 1).padStart(2, "0")}</div>
-        <h3 className="font-display text-3xl lg:text-4xl leading-[0.95] italic">{event.title}</h3>
-        <div className="mt-6 inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest opacity-90">
-          Open recap
-          <span className="group-hover:translate-x-1 transition-transform">→</span>
+        <h3 className="font-display text-3xl lg:text-4xl italic leading-[0.95] group-hover:text-magenta transition-colors">
+          {event.title}
+        </h3>
+        <p className="mt-3 text-sm text-ink/65 leading-relaxed max-w-sm">{event.brief}</p>
+        <div className="mt-6 inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.2em] text-ink/80">
+          Reserve a seat
+          <ArrowUpRight className="size-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
         </div>
       </div>
     </a>
+  );
+}
+
+/* ─── Log Row ─── */
+
+function LogRow({ event, index }: { event: typeof pastEvents[0]; index: number }) {
+  return (
+    <li className="group border-b border-ink/15">
+      <a
+        href="#"
+        className="grid grid-cols-12 items-baseline gap-4 py-5 lg:py-6 hover:pl-3 transition-[padding] duration-300"
+      >
+        <span className="col-span-2 lg:col-span-1 font-mono text-[11px] uppercase tracking-[0.18em] text-ink/40">
+          № {String(index).padStart(2, "0")}
+        </span>
+        <span className="col-span-3 lg:col-span-2 font-mono text-[11px] uppercase tracking-[0.18em] text-ink/60">
+          {event.date}
+        </span>
+        <span className="col-span-7 lg:col-span-7 font-display text-xl lg:text-2xl italic group-hover:text-magenta transition-colors leading-tight">
+          {event.title}
+        </span>
+        <span className="hidden lg:flex col-span-2 items-center justify-end gap-2 font-mono text-[10px] uppercase tracking-[0.2em] text-ink/50">
+          <span className={`size-1.5 rounded-full ${event.color}`} />
+          {event.type}
+        </span>
+      </a>
+    </li>
   );
 }
 
