@@ -137,32 +137,41 @@ function EventsPage() {
           <FeaturedCard event={featuredEvent} />
         </section>
 
-        {/* Upcoming list */}
+        {/* On the horizon — poster duo */}
         <section className="mt-16 lg:mt-24 reveal-on-scroll">
           <div className="flex items-baseline justify-between gap-4 mb-8">
-            <h2 className="font-display text-3xl lg:text-5xl italic">Coming up</h2>
-            <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-ink/50">{upcomingEvents.length} gatherings</span>
+            <h2 className="font-display text-3xl lg:text-5xl italic">On the horizon</h2>
+            <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-ink/50">
+              Two more this season
+            </span>
           </div>
-          <div className="flex flex-col">
-            {upcomingEvents.map((e, i) => (
-              <EventRow key={e.id} event={e} first={i === 0} />
+          <div className="grid md:grid-cols-2 gap-4 lg:gap-6">
+            {upcomingEvents.slice(0, 2).map((e) => (
+              <HorizonPoster key={e.id} event={e} />
             ))}
           </div>
+          <p className="mt-8 max-w-md text-sm text-ink/60 leading-relaxed">
+            We gather a few times a year, deliberately. Want a heads-up?{" "}
+            <a href="#" className="underline underline-offset-4 decoration-magenta hover:text-magenta">
+              Join the dispatch
+            </a>
+            .
+          </p>
         </section>
 
-        {/* Past — contact sheet */}
+        {/* Logbook — chronological index */}
         <section className="mt-16 lg:mt-24 reveal-on-scroll">
           <div className="flex items-baseline justify-between gap-4 mb-8">
-            <h2 className="font-display text-3xl lg:text-5xl italic">Previous gatherings</h2>
-            <a href="#" className="font-mono text-[11px] uppercase tracking-[0.18em] underline underline-offset-4 decoration-magenta hover:text-magenta">
-              View archive
-            </a>
+            <h2 className="font-display text-3xl lg:text-5xl italic">Logbook</h2>
+            <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-ink/50">
+              Since 2018 · 47 gatherings
+            </span>
           </div>
-          <div className="grid grid-cols-2 lg:grid-cols-3 gap-4">
+          <ol className="border-t border-ink/15">
             {pastEvents.map((e, i) => (
-              <PastCard key={i} event={e} index={i} />
+              <LogRow key={i} event={e} index={pastEvents.length - i} />
             ))}
-          </div>
+          </ol>
         </section>
 
         {/* CTA */}
