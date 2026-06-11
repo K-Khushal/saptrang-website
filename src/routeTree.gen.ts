@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as EventsRouteImport } from './routes/events'
 import { Route as CommunityRouteImport } from './routes/community'
 import { Route as AuthRouteImport } from './routes/auth'
+import { Route as AboutUsRouteImport } from './routes/about-us'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as CommunityProfileRouteImport } from './routes/community.profile'
 
@@ -30,6 +31,11 @@ const AuthRoute = AuthRouteImport.update({
   path: '/auth',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AboutUsRoute = AboutUsRouteImport.update({
+  id: '/about-us',
+  path: '/about-us',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -43,6 +49,7 @@ const CommunityProfileRoute = CommunityProfileRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about-us': typeof AboutUsRoute
   '/auth': typeof AuthRoute
   '/community': typeof CommunityRouteWithChildren
   '/events': typeof EventsRoute
@@ -50,6 +57,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about-us': typeof AboutUsRoute
   '/auth': typeof AuthRoute
   '/community': typeof CommunityRouteWithChildren
   '/events': typeof EventsRoute
@@ -58,6 +66,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about-us': typeof AboutUsRoute
   '/auth': typeof AuthRoute
   '/community': typeof CommunityRouteWithChildren
   '/events': typeof EventsRoute
@@ -65,12 +74,25 @@ export interface FileRoutesById {
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/auth' | '/community' | '/events' | '/community/profile'
+  fullPaths:
+    | '/'
+    | '/about-us'
+    | '/auth'
+    | '/community'
+    | '/events'
+    | '/community/profile'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/auth' | '/community' | '/events' | '/community/profile'
+  to:
+    | '/'
+    | '/about-us'
+    | '/auth'
+    | '/community'
+    | '/events'
+    | '/community/profile'
   id:
     | '__root__'
     | '/'
+    | '/about-us'
     | '/auth'
     | '/community'
     | '/events'
@@ -79,6 +101,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutUsRoute: typeof AboutUsRoute
   AuthRoute: typeof AuthRoute
   CommunityRoute: typeof CommunityRouteWithChildren
   EventsRoute: typeof EventsRoute
@@ -105,6 +128,13 @@ declare module '@tanstack/react-router' {
       path: '/auth'
       fullPath: '/auth'
       preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about-us': {
+      id: '/about-us'
+      path: '/about-us'
+      fullPath: '/about-us'
+      preLoaderRoute: typeof AboutUsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -138,6 +168,7 @@ const CommunityRouteWithChildren = CommunityRoute._addFileChildren(
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutUsRoute: AboutUsRoute,
   AuthRoute: AuthRoute,
   CommunityRoute: CommunityRouteWithChildren,
   EventsRoute: EventsRoute,
