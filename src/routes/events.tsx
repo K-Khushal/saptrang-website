@@ -203,6 +203,7 @@ function Nav() {
 
   const links = [
     { href: "/", label: "Home" },
+    { href: "/about-us", label: "About" },
     { href: "/community", label: "Community" },
     { href: "/events", label: "Gatherings", active: true },
   ];
