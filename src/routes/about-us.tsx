@@ -230,6 +230,7 @@ function Nav() {
     { href: "/about-us", label: "About", active: true },
     { href: "/community", label: "Community" },
     { href: "/events", label: "Gatherings" },
+    { href: "/gallery", label: "Gallery" },
   ];
 
   return (
