@@ -130,7 +130,7 @@ function Nav() {
   const links = [
     { href: "/about-us", label: "About", color: "hover:text-magenta" },
     { href: "/events", label: "Gatherings", color: "hover:text-cobalt" },
-    { href: "#creators", label: "Creators", color: "hover:text-emerald" },
+    { href: "/gallery", label: "Gallery", color: "hover:text-emerald" },
     { href: "#journal", label: "Journal", color: "hover:text-tangerine" },
   ];
 

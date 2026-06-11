@@ -1,16 +1,20 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
+import heroImg from "@/assets/hero-collective.jpg";
+import aboutImg from "@/assets/about-workshop.jpg";
+import eventImg from "@/assets/event-screening.jpg";
+import creatorImg from "@/assets/creator-portrait.jpg";
 
-export const Route = createFileRoute("/about-us")({
+export const Route = createFileRoute("/gallery")({
   head: () => ({
     meta: [
-      { title: "About — Pulse" },
-      { name: "description", content: "The story behind Pulse: a global collective of filmmakers, photographers, artists and cultural makers." },
-      { property: "og:title", content: "About — Pulse" },
-      { property: "og:description", content: "The story behind Pulse: a global collective of filmmakers, photographers, artists and cultural makers." },
+      { title: "Gallery — Pulse" },
+      { name: "description", content: "Selected work from the Pulse collective: film stills, photographs, zines and workshop archives." },
+      { property: "og:title", content: "Gallery — Pulse" },
+      { property: "og:description", content: "Selected work from the Pulse collective: film stills, photographs, zines and workshop archives." },
     ],
   }),
-  component: AboutPage,
+  component: GalleryPage,
 });
 
 function useScrollReveal() {
@@ -42,8 +46,39 @@ function useScrollReveal() {
 
 /* ─── Page ─── */
 
-function AboutPage() {
+const filters = ["All", "Film", "Photography", "Zines", "Workshops"];
+
+type Piece = {
+  id: string;
+  title: string;
+  maker: string;
+  category: string;
+  year: string;
+  type: "image" | "color";
+  src?: string;
+  bg?: string;
+  fg?: string;
+  span?: string;
+  aspect?: string;
+};
+
+const pieces: Piece[] = [
+  { id: "1", title: "Bandra Zine No. 3", maker: "Aarav Mehta", category: "Zines", year: "2024", type: "image", src: aboutImg, span: "lg:col-span-5", aspect: "aspect-[4/3]" },
+  { id: "2", title: "Neon Tokyo — Vol. 11", maker: "Lena Voss", category: "Film", year: "2024", type: "color", bg: "bg-cobalt", fg: "text-cream", span: "lg:col-span-4", aspect: "aspect-[4/5]" },
+  { id: "3", title: "Kochi Light Studies", maker: "Sana Iyer", category: "Photography", year: "2024", type: "image", src: eventImg, span: "lg:col-span-3", aspect: "aspect-[3/4]" },
+  { id: "4", title: "Darkroom Notes", maker: "Ravi Menon", category: "Workshops", year: "2023", type: "color", bg: "bg-ink", fg: "text-acid", span: "lg:col-span-3", aspect: "aspect-square" },
+  { id: "5", title: "Collective Portrait", maker: "Vihaan Roy", category: "Photography", year: "2023", type: "image", src: heroImg, span: "lg:col-span-5", aspect: "aspect-[4/3]" },
+  { id: "6", title: "Marseille Residency", maker: "Sofia Cruz", category: "Film", year: "2023", type: "color", bg: "bg-tangerine", fg: "text-ink", span: "lg:col-span-4", aspect: "aspect-[4/5]" },
+  { id: "7", title: "Creator Profile — Noor", maker: "Jonas Park", category: "Photography", year: "2024", type: "image", src: creatorImg, span: "lg:col-span-3", aspect: "aspect-[3/4]" },
+  { id: "8", title: "Letterpress Archive", maker: "Noor Kapoor", category: "Zines", year: "2023", type: "color", bg: "bg-emerald", fg: "text-cream", span: "lg:col-span-4", aspect: "aspect-square" },
+  { id: "9", title: "Salt & Grain", maker: "Lena Voss", category: "Film", year: "2023", type: "color", bg: "bg-magenta", fg: "text-cream", span: "lg:col-span-4", aspect: "aspect-[4/5]" },
+  { id: "10", title: "Bengaluru Open Mic", maker: "Aarav Mehta", category: "Workshops", year: "2024", type: "color", bg: "bg-acid", fg: "text-ink", span: "lg:col-span-4", aspect: "aspect-[4/3]" },
+];
+
+function GalleryPage() {
   useScrollReveal();
+  const [activeFilter, setActiveFilter] = useState("All");
+  const filtered = activeFilter === "All" ? pieces : pieces.filter((p) => p.category === activeFilter);
 
   return (
     <div className="min-h-screen bg-cream text-ink font-body selection:bg-magenta selection:text-cream">
@@ -54,163 +89,116 @@ function AboutPage() {
         <header className="reveal-on-scroll">
           <p className="font-mono text-[11px] uppercase tracking-[0.3em] flex items-center gap-3">
             <span className="inline-block w-10 h-px bg-ink" />
-            About the Collective
+            Selected Work
           </p>
           <h1 className="mt-6 font-display font-semibold text-[clamp(2.5rem,7vw,6rem)] leading-[0.92] tracking-[-0.02em] text-balance">
-            We started in a <span className="italic text-magenta">basement</span>.<br />
-            We&apos;re still that <span className="italic text-cobalt">room</span>.
+            The <span className="italic text-magenta">archive</span> of<br />
+            what we <span className="italic text-cobalt">made</span>.
           </h1>
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-ink/70">
-            Pulse is a non-profit cultural foundation building physical space for analog, embodied, human storytelling. No algorithms. No engagement metrics. Just the heat of a shared room.
+            Film stills, darkroom prints, hand-bound zines and workshop residues. Nothing here was optimized for a feed.
           </p>
         </header>
 
-        {/* Origin story */}
-        <section className="mt-16 lg:mt-24 reveal-on-scroll">
-          <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-center">
-            <div className="lg:col-span-5 order-2 lg:order-1">
-              <div className="relative">
-                <div className="absolute -inset-4 bg-acid -z-10 rounded-[2rem] rotate-[1deg]" />
-                <div className="w-full aspect-[4/5] bg-ink rounded-[1.5rem] border-4 border-ink flex items-center justify-center overflow-hidden">
-                  <div className="text-cream text-center p-8">
-                    <div className="font-display text-6xl italic leading-none">2018</div>
-                    <div className="mt-2 font-mono text-[10px] uppercase tracking-[0.25em] opacity-70">Berlin · Kreuzberg</div>
-                  </div>
-                </div>
-                <div className="absolute -bottom-6 -right-6 bg-cream border-4 border-ink rounded-2xl px-5 py-3 rotate-[-4deg] shadow-lg">
-                  <div className="font-mono text-[10px] uppercase tracking-widest text-ink/60">First screening</div>
-                  <div className="font-display text-xl italic">Twelve chairs</div>
-                </div>
-              </div>
-            </div>
-            <div className="lg:col-span-7 order-1 lg:order-2">
-              <span className="inline-block bg-tangerine text-ink px-3 py-1 font-mono text-[10px] uppercase tracking-[0.25em] rotate-[-2deg]">
-                Origin
-              </span>
-              <h2 className="mt-6 font-display text-4xl lg:text-5xl leading-[0.95] tracking-[-0.02em] text-balance">
-                A borrowed projector.<br />
-                A stubborn <span className="italic text-magenta">refusal</span> to flatten culture into content.
-              </h2>
-              <div className="mt-6 lg:mt-10 space-y-6 text-base leading-relaxed text-ink/80 max-w-[52ch]">
-                <p>
-                  Pulse began in a basement screening room in Kreuzberg with twelve chairs, a borrowed projector, and a conviction that the best way to experience film is shoulder-to-shoulder with strangers who become friends.
-                </p>
-                <p>
-                  Six years later, we are twelve chapters across six continents. We still hand-print zines, screen on 16mm, and argue about framing until the cafe kicks us out. The only thing that changed is we have better coffee.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Values */}
-        <section className="mt-16 lg:mt-24 reveal-on-scroll">
-          <div className="flex items-baseline justify-between gap-4 mb-10">
-            <h2 className="font-display text-3xl lg:text-5xl italic">What we believe</h2>
-            <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-ink/50">Three principles</span>
-          </div>
-          <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
-            {[
-              {
-                num: "01",
-                title: "Physical space is sacred",
-                body: "We do not livestream. We do not record. What happens in the room stays in the room — and in the memory of the people who were there.",
-                color: "bg-cobalt",
-              },
-              {
-                num: "02",
-                title: "Process over product",
-                body: "We fund incomplete work, rough cuts, and experiments that might fail. The journey of making is as important as what gets made.",
-                color: "bg-magenta",
-              },
-              {
-                num: "03",
-                title: "Community is infrastructure",
-                body: "Editors need sound designers. Photographers need darkrooms. Poets need listeners. We are the connective tissue between makers.",
-                color: "bg-emerald",
-              },
-            ].map((v) => (
-              <div key={v.num} className="border-t-4 border-ink pt-6">
-                <span className={`inline-block ${v.color} text-cream rounded-full size-10 grid place-items-center font-mono text-[11px] uppercase tracking-[0.18em] mb-6`}>
-                  {v.num}
-                </span>
-                <h3 className="font-display text-2xl lg:text-3xl italic leading-tight">{v.title}</h3>
-                <p className="mt-4 text-sm leading-relaxed text-ink/70">{v.body}</p>
-              </div>
+        {/* Filters */}
+        <section className="mt-10 lg:mt-14 reveal-on-scroll">
+          <div className="flex flex-wrap gap-3">
+            {filters.map((f) => (
+              <button
+                key={f}
+                onClick={() => setActiveFilter(f)}
+                className={`px-4 py-2 rounded-full text-[11px] uppercase tracking-[0.18em] font-mono border transition-colors ${
+                  activeFilter === f
+                    ? "bg-ink text-cream border-ink"
+                    : "bg-transparent text-ink/60 border-ink/10 hover:border-ink/30 hover:text-ink"
+                }`}
+              >
+                {f}
+              </button>
             ))}
           </div>
         </section>
 
-        {/* Curators */}
-        <section className="mt-16 lg:mt-24 reveal-on-scroll">
-          <div className="flex items-baseline justify-between gap-4 mb-10">
-            <h2 className="font-display text-3xl lg:text-5xl italic">The curators</h2>
-            <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-ink/50">Core team</span>
-          </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              { name: "Lena Voss", role: "Founder & Director", city: "Berlin", color: "bg-magenta" },
-              { name: "Ravi Menon", role: "Programme Curator", city: "Mumbai", color: "bg-cobalt" },
-              { name: "Sofia Cruz", role: "Residencies Lead", city: "Lisbon", color: "bg-tangerine" },
-              { name: "Jonas Park", role: "Editor-in-Chief", city: "Seoul", color: "bg-emerald" },
-            ].map((p) => (
-              <div key={p.name} className="group">
-                <div className={`${p.color} aspect-[3/4] rounded-2xl border-4 border-ink flex flex-col justify-between p-5 text-cream`}>
-                  <span className="font-mono text-[10px] uppercase tracking-[0.2em] opacity-80">{p.city}</span>
-                  <div>
-                    <h3 className="font-display text-2xl italic leading-tight">{p.name}</h3>
-                    <p className="mt-1 font-mono text-[11px] uppercase tracking-[0.18em] opacity-80">{p.role}</p>
-                  </div>
-                </div>
-              </div>
+        {/* Grid */}
+        <section className="mt-10 lg:mt-14 reveal-on-scroll">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-4 lg:gap-5">
+            {filtered.map((p) => (
+              <GalleryItem key={p.id} piece={p} />
             ))}
           </div>
-        </section>
-
-        {/* Stats */}
-        <section className="mt-16 lg:mt-24 reveal-on-scroll">
-          <div className="bg-acid text-ink rounded-3xl p-8 lg:p-14 border-4 border-ink">
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10">
-              {[
-                { figure: "420+", label: "Active members" },
-                { figure: "12", label: "Chapters worldwide" },
-                { figure: "06", label: "Continents reached" },
-                { figure: "∞", label: "Stories shared" },
-              ].map((s) => (
-                <div key={s.label}>
-                  <div className="font-display text-5xl lg:text-6xl italic leading-none">{s.figure}</div>
-                  <div className="mt-2 font-mono text-[11px] uppercase tracking-[0.22em] opacity-70">{s.label}</div>
-                </div>
-              ))}
-            </div>
-          </div>
+          {filtered.length === 0 && (
+            <p className="mt-20 text-center font-mono text-[11px] uppercase tracking-[0.22em] text-ink/40">
+              Nothing in this category yet.
+            </p>
+          )}
         </section>
 
         {/* CTA */}
         <section className="mt-16 lg:mt-24 reveal-on-scroll">
           <div className="bg-ink text-cream rounded-3xl p-8 lg:p-14 flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8">
             <div>
-              <p className="font-mono text-[11px] uppercase tracking-[0.25em] text-cream/60">Join the room</p>
+              <p className="font-mono text-[11px] uppercase tracking-[0.25em] text-cream/60">Submit your work</p>
               <h2 className="mt-4 font-display text-4xl lg:text-6xl leading-[0.95]">
-                Belong to something<br />
-                <span className="italic text-acid">analog.</span>
+                Made something<br />
+                <span className="italic text-acid">analog?</span>
               </h2>
               <p className="mt-4 max-w-md text-cream/70 leading-relaxed">
-                Membership is open year-round. We review applications in monthly cohorts. No portfolio required — just curiosity and a willingness to show up.
+                We feature member work every month. No portfolio required — just a story and a still.
               </p>
             </div>
-            <Link
-              to="/auth"
-              className="shrink-0 inline-flex items-center gap-3 bg-acid text-ink pl-6 pr-2 py-2 rounded-full text-sm font-medium hover:bg-cream transition-colors"
-            >
-              Apply to Join
+            <button className="shrink-0 inline-flex items-center gap-3 bg-acid text-ink pl-6 pr-2 py-2 rounded-full text-sm font-medium hover:bg-cream transition-colors">
+              Send a submission
               <span className="size-9 rounded-full bg-ink text-acid grid place-items-center text-lg">↗</span>
-            </Link>
+            </button>
           </div>
         </section>
       </main>
 
       <Footer />
+    </div>
+  );
+}
+
+/* ─── Gallery Item ─── */
+
+function GalleryItem({ piece }: { piece: Piece }) {
+  if (piece.type === "image" && piece.src) {
+    return (
+      <div className={`${piece.span} group`}>
+        <div className={`relative overflow-hidden rounded-2xl border-4 border-ink ${piece.aspect}`}>
+          <img
+            src={piece.src}
+            alt={piece.title}
+            loading="lazy"
+            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-ink/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+          <div className="absolute bottom-0 left-0 right-0 p-5 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
+            <p className="font-display text-2xl italic text-cream leading-tight">{piece.title}</p>
+            <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.2em] text-cream/70">
+              {piece.maker} · {piece.year}
+            </p>
+          </div>
+        </div>
+        <div className="mt-3 flex items-baseline justify-between gap-3">
+          <h3 className="font-display text-lg italic leading-tight">{piece.title}</h3>
+          <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-ink/50 shrink-0">{piece.category}</span>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className={`${piece.span} group`}>
+      <div className={`relative overflow-hidden rounded-2xl border-4 border-ink ${piece.bg} ${piece.fg} ${piece.aspect} flex flex-col justify-between p-5 lg:p-7 hover:-translate-y-2 hover:rotate-[-1deg] transition-transform duration-500`}>
+        <span className="font-mono text-[10px] uppercase tracking-[0.2em] opacity-80">{piece.category}</span>
+        <div>
+          <h3 className="font-display text-3xl lg:text-4xl italic leading-[0.95]">{piece.title}</h3>
+          <p className="mt-2 font-mono text-[11px] uppercase tracking-[0.18em] opacity-80">
+            {piece.maker} · {piece.year}
+          </p>
+        </div>
+      </div>
     </div>
   );
 }
@@ -227,10 +215,10 @@ function Nav() {
 
   const links = [
     { href: "/", label: "Home" },
-    { href: "/about-us", label: "About", active: true },
+    { href: "/about-us", label: "About" },
     { href: "/community", label: "Community" },
     { href: "/events", label: "Gatherings" },
-    { href: "/gallery", label: "Gallery" },
+    { href: "/gallery", label: "Gallery", active: true },
   ];
 
   return (
@@ -319,6 +307,7 @@ function Footer() {
                 <li><Link to="/about-us" className="hover:text-acid transition-colors">About</Link></li>
                 <li><Link to="/community" className="hover:text-acid transition-colors">Community</Link></li>
                 <li><Link to="/events" className="hover:text-acid transition-colors">Gatherings</Link></li>
+                <li><Link to="/gallery" className="hover:text-acid transition-colors">Gallery</Link></li>
               </ul>
             </div>
             <div>
