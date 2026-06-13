@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as GalleryRouteImport } from './routes/gallery'
 import { Route as EventsRouteImport } from './routes/events'
 import { Route as CommunityRouteImport } from './routes/community'
@@ -17,6 +18,11 @@ import { Route as AboutUsRouteImport } from './routes/about-us'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as CommunityProfileRouteImport } from './routes/community.profile'
 
+const ProfileRoute = ProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const GalleryRoute = GalleryRouteImport.update({
   id: '/gallery',
   path: '/gallery',
@@ -60,6 +66,7 @@ export interface FileRoutesByFullPath {
   '/community': typeof CommunityRouteWithChildren
   '/events': typeof EventsRoute
   '/gallery': typeof GalleryRoute
+  '/profile': typeof ProfileRoute
   '/community/profile': typeof CommunityProfileRoute
 }
 export interface FileRoutesByTo {
@@ -69,6 +76,7 @@ export interface FileRoutesByTo {
   '/community': typeof CommunityRouteWithChildren
   '/events': typeof EventsRoute
   '/gallery': typeof GalleryRoute
+  '/profile': typeof ProfileRoute
   '/community/profile': typeof CommunityProfileRoute
 }
 export interface FileRoutesById {
@@ -79,6 +87,7 @@ export interface FileRoutesById {
   '/community': typeof CommunityRouteWithChildren
   '/events': typeof EventsRoute
   '/gallery': typeof GalleryRoute
+  '/profile': typeof ProfileRoute
   '/community/profile': typeof CommunityProfileRoute
 }
 export interface FileRouteTypes {
@@ -90,6 +99,7 @@ export interface FileRouteTypes {
     | '/community'
     | '/events'
     | '/gallery'
+    | '/profile'
     | '/community/profile'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -99,6 +109,7 @@ export interface FileRouteTypes {
     | '/community'
     | '/events'
     | '/gallery'
+    | '/profile'
     | '/community/profile'
   id:
     | '__root__'
@@ -108,6 +119,7 @@ export interface FileRouteTypes {
     | '/community'
     | '/events'
     | '/gallery'
+    | '/profile'
     | '/community/profile'
   fileRoutesById: FileRoutesById
 }
@@ -118,10 +130,18 @@ export interface RootRouteChildren {
   CommunityRoute: typeof CommunityRouteWithChildren
   EventsRoute: typeof EventsRoute
   GalleryRoute: typeof GalleryRoute
+  ProfileRoute: typeof ProfileRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/profile': {
+      id: '/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof ProfileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/gallery': {
       id: '/gallery'
       path: '/gallery'
@@ -193,6 +213,7 @@ const rootRouteChildren: RootRouteChildren = {
   CommunityRoute: CommunityRouteWithChildren,
   EventsRoute: EventsRoute,
   GalleryRoute: GalleryRoute,
+  ProfileRoute: ProfileRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
