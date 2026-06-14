@@ -13,6 +13,7 @@ import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as GalleryRouteImport } from './routes/gallery'
 import { Route as EventsRouteImport } from './routes/events'
 import { Route as CommunityRouteImport } from './routes/community'
+import { Route as AwardsRouteImport } from './routes/awards'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AboutUsRouteImport } from './routes/about-us'
 import { Route as IndexRouteImport } from './routes/index'
@@ -36,6 +37,11 @@ const EventsRoute = EventsRouteImport.update({
 const CommunityRoute = CommunityRouteImport.update({
   id: '/community',
   path: '/community',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AwardsRoute = AwardsRouteImport.update({
+  id: '/awards',
+  path: '/awards',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthRoute = AuthRouteImport.update({
@@ -63,6 +69,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about-us': typeof AboutUsRoute
   '/auth': typeof AuthRoute
+  '/awards': typeof AwardsRoute
   '/community': typeof CommunityRouteWithChildren
   '/events': typeof EventsRoute
   '/gallery': typeof GalleryRoute
@@ -73,6 +80,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about-us': typeof AboutUsRoute
   '/auth': typeof AuthRoute
+  '/awards': typeof AwardsRoute
   '/community': typeof CommunityRouteWithChildren
   '/events': typeof EventsRoute
   '/gallery': typeof GalleryRoute
@@ -84,6 +92,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about-us': typeof AboutUsRoute
   '/auth': typeof AuthRoute
+  '/awards': typeof AwardsRoute
   '/community': typeof CommunityRouteWithChildren
   '/events': typeof EventsRoute
   '/gallery': typeof GalleryRoute
@@ -96,6 +105,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about-us'
     | '/auth'
+    | '/awards'
     | '/community'
     | '/events'
     | '/gallery'
@@ -106,6 +116,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about-us'
     | '/auth'
+    | '/awards'
     | '/community'
     | '/events'
     | '/gallery'
@@ -116,6 +127,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about-us'
     | '/auth'
+    | '/awards'
     | '/community'
     | '/events'
     | '/gallery'
@@ -127,6 +139,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutUsRoute: typeof AboutUsRoute
   AuthRoute: typeof AuthRoute
+  AwardsRoute: typeof AwardsRoute
   CommunityRoute: typeof CommunityRouteWithChildren
   EventsRoute: typeof EventsRoute
   GalleryRoute: typeof GalleryRoute
@@ -161,6 +174,13 @@ declare module '@tanstack/react-router' {
       path: '/community'
       fullPath: '/community'
       preLoaderRoute: typeof CommunityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/awards': {
+      id: '/awards'
+      path: '/awards'
+      fullPath: '/awards'
+      preLoaderRoute: typeof AwardsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/auth': {
@@ -210,6 +230,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutUsRoute: AboutUsRoute,
   AuthRoute: AuthRoute,
+  AwardsRoute: AwardsRoute,
   CommunityRoute: CommunityRouteWithChildren,
   EventsRoute: EventsRoute,
   GalleryRoute: GalleryRoute,
