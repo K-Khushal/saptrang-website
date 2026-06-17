@@ -131,6 +131,7 @@ function Nav() {
     { href: "/about-us", label: "About", color: "hover:text-magenta" },
     { href: "/events", label: "Gatherings", color: "hover:text-cobalt" },
     { href: "/gallery", label: "Gallery", color: "hover:text-emerald" },
+    { href: "/membership", label: "Membership", color: "hover:text-tangerine" },
     { href: "#journal", label: "Journal", color: "hover:text-tangerine" },
   ];
 

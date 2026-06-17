@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as ProfileRouteImport } from './routes/profile'
+import { Route as MembershipRouteImport } from './routes/membership'
 import { Route as GalleryRouteImport } from './routes/gallery'
 import { Route as EventsRouteImport } from './routes/events'
 import { Route as CommunityRouteImport } from './routes/community'
@@ -22,6 +23,11 @@ import { Route as CommunityProfileRouteImport } from './routes/community.profile
 const ProfileRoute = ProfileRouteImport.update({
   id: '/profile',
   path: '/profile',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MembershipRoute = MembershipRouteImport.update({
+  id: '/membership',
+  path: '/membership',
   getParentRoute: () => rootRouteImport,
 } as any)
 const GalleryRoute = GalleryRouteImport.update({
@@ -73,6 +79,7 @@ export interface FileRoutesByFullPath {
   '/community': typeof CommunityRouteWithChildren
   '/events': typeof EventsRoute
   '/gallery': typeof GalleryRoute
+  '/membership': typeof MembershipRoute
   '/profile': typeof ProfileRoute
   '/community/profile': typeof CommunityProfileRoute
 }
@@ -84,6 +91,7 @@ export interface FileRoutesByTo {
   '/community': typeof CommunityRouteWithChildren
   '/events': typeof EventsRoute
   '/gallery': typeof GalleryRoute
+  '/membership': typeof MembershipRoute
   '/profile': typeof ProfileRoute
   '/community/profile': typeof CommunityProfileRoute
 }
@@ -96,6 +104,7 @@ export interface FileRoutesById {
   '/community': typeof CommunityRouteWithChildren
   '/events': typeof EventsRoute
   '/gallery': typeof GalleryRoute
+  '/membership': typeof MembershipRoute
   '/profile': typeof ProfileRoute
   '/community/profile': typeof CommunityProfileRoute
 }
@@ -109,6 +118,7 @@ export interface FileRouteTypes {
     | '/community'
     | '/events'
     | '/gallery'
+    | '/membership'
     | '/profile'
     | '/community/profile'
   fileRoutesByTo: FileRoutesByTo
@@ -120,6 +130,7 @@ export interface FileRouteTypes {
     | '/community'
     | '/events'
     | '/gallery'
+    | '/membership'
     | '/profile'
     | '/community/profile'
   id:
@@ -131,6 +142,7 @@ export interface FileRouteTypes {
     | '/community'
     | '/events'
     | '/gallery'
+    | '/membership'
     | '/profile'
     | '/community/profile'
   fileRoutesById: FileRoutesById
@@ -143,6 +155,7 @@ export interface RootRouteChildren {
   CommunityRoute: typeof CommunityRouteWithChildren
   EventsRoute: typeof EventsRoute
   GalleryRoute: typeof GalleryRoute
+  MembershipRoute: typeof MembershipRoute
   ProfileRoute: typeof ProfileRoute
 }
 
@@ -153,6 +166,13 @@ declare module '@tanstack/react-router' {
       path: '/profile'
       fullPath: '/profile'
       preLoaderRoute: typeof ProfileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/membership': {
+      id: '/membership'
+      path: '/membership'
+      fullPath: '/membership'
+      preLoaderRoute: typeof MembershipRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/gallery': {
@@ -234,6 +254,7 @@ const rootRouteChildren: RootRouteChildren = {
   CommunityRoute: CommunityRouteWithChildren,
   EventsRoute: EventsRoute,
   GalleryRoute: GalleryRoute,
+  MembershipRoute: MembershipRoute,
   ProfileRoute: ProfileRoute,
 }
 export const routeTree = rootRouteImport
