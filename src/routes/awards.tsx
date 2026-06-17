@@ -466,6 +466,7 @@ function Nav() {
     { href: "/events", label: "Gatherings" },
     { href: "/gallery", label: "Gallery" },
     { href: "/awards", label: "Awards", active: true },
+    { href: "/membership", label: "Membership" },
   ];
 
   return (
