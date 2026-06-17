@@ -231,6 +231,7 @@ function Nav() {
     { href: "/community", label: "Community" },
     { href: "/events", label: "Gatherings" },
     { href: "/gallery", label: "Gallery" },
+    { href: "/membership", label: "Membership" },
   ];
 
   return (
