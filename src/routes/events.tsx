@@ -44,69 +44,9 @@ function useScrollReveal() {
 
 /* ─── Data ─── */
 
-const featuredEvent = {
-  title: "Vol. 12 — Berlin",
-  subtitle: "Midnight Screenings & Analog Rituals",
-  date: "June 21 — 23, 2024",
-  location: "Kino International, Berlin",
-  time: "Doors 7pm · Screenings 8pm",
-  description:
-    "Three evenings of 16mm projections, live scoring, and after-hours conversations. This volume centres on voices from the Baltic and Black Sea — filmmakers working between documentary, essay, and the purely visual.",
-  spots: 12,
-  color: "bg-magenta",
-};
+const featuredEvent = events[0];
+const upcomingEvents = events.slice(1);
 
-const upcomingEvents = [
-  {
-    id: "e1",
-    title: "Darkroom Rituals V",
-    date: "Jul 6, 2024",
-    location: "Pune",
-    type: "Workshop",
-    color: "bg-emerald",
-    tagColor: "text-emerald",
-    brief: "A full-day workshop on hand-processing black-and-white 35mm. Bring your own roll.",
-  },
-  {
-    id: "e2",
-    title: "Coastal Light — Kochi",
-    date: "Jul 20, 2024",
-    location: "Kochi",
-    type: "Residency",
-    color: "bg-cobalt",
-    tagColor: "text-cobalt",
-    brief: "Two-week residency for photographers working with natural light and coastal landscapes.",
-  },
-  {
-    id: "e3",
-    title: "Vol. 13 — Mumbai",
-    date: "Aug 10, 2024",
-    location: "Mumbai",
-    type: "Screening",
-    color: "bg-tangerine",
-    tagColor: "text-tangerine",
-    brief: "Members-only screening followed by a roundtable on independent distribution in India.",
-  },
-  {
-    id: "e4",
-    title: "Zine Maker's Fair",
-    date: "Aug 24, 2024",
-    location: "Delhi",
-    type: "Fair",
-    color: "bg-acid",
-    tagColor: "text-ink/70",
-    brief: "Table space, risograph demos, and a swap meet. Open to the public.",
-  },
-];
-
-const pastEvents = [
-  { title: "Vol. 11 — Neon Tokyo", date: "Mar 2024", type: "Screening", color: "bg-cobalt" },
-  { title: "Light Leaks Lisbon", date: "Feb 2024", type: "Workshop", color: "bg-tangerine" },
-  { title: "Salt & Grain — Marseille", date: "Nov 2023", type: "Residency", color: "bg-acid" },
-  { title: "Vol. 10 — Mexico City", date: "Sep 2023", type: "Festival", color: "bg-magenta" },
-  { title: "Darkroom Rituals IV", date: "Jul 2023", type: "Workshop", color: "bg-emerald" },
-  { title: "Ghosts on 16mm — NYC", date: "May 2023", type: "Screening", color: "bg-ink" },
-];
 
 /* ─── Page ─── */
 
