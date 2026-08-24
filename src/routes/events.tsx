@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowUpRight, Calendar, MapPin, Clock } from "lucide-react";
 import { useEffect, useState } from "react";
+import { events, pastEvents, type PulseEvent } from "@/lib/events-data";
 
 export const Route = createFileRoute("/events")({
   head: () => ({
