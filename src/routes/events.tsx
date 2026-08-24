@@ -86,7 +86,7 @@ function EventsPage() {
           </div>
           <div className="flex flex-col">
             {upcomingEvents.map((e, i) => (
-              <EventRow key={e.id} event={e} first={i === 0} />
+              <EventRow key={e.slug} event={e} first={i === 0} />
             ))}
           </div>
         </section>
