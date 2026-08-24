@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowUpRight, Calendar, MapPin, Clock } from "lucide-react";
 import { useEffect, useState } from "react";
+import { events, pastEvents, type PulseEvent } from "@/lib/events-data";
 
 export const Route = createFileRoute("/events")({
   head: () => ({
@@ -43,69 +44,9 @@ function useScrollReveal() {
 
 /* ─── Data ─── */
 
-const featuredEvent = {
-  title: "Vol. 12 — Berlin",
-  subtitle: "Midnight Screenings & Analog Rituals",
-  date: "June 21 — 23, 2024",
-  location: "Kino International, Berlin",
-  time: "Doors 7pm · Screenings 8pm",
-  description:
-    "Three evenings of 16mm projections, live scoring, and after-hours conversations. This volume centres on voices from the Baltic and Black Sea — filmmakers working between documentary, essay, and the purely visual.",
-  spots: 12,
-  color: "bg-magenta",
-};
+const featuredEvent = events[0];
+const upcomingEvents = events.slice(1);
 
-const upcomingEvents = [
-  {
-    id: "e1",
-    title: "Darkroom Rituals V",
-    date: "Jul 6, 2024",
-    location: "Pune",
-    type: "Workshop",
-    color: "bg-emerald",
-    tagColor: "text-emerald",
-    brief: "A full-day workshop on hand-processing black-and-white 35mm. Bring your own roll.",
-  },
-  {
-    id: "e2",
-    title: "Coastal Light — Kochi",
-    date: "Jul 20, 2024",
-    location: "Kochi",
-    type: "Residency",
-    color: "bg-cobalt",
-    tagColor: "text-cobalt",
-    brief: "Two-week residency for photographers working with natural light and coastal landscapes.",
-  },
-  {
-    id: "e3",
-    title: "Vol. 13 — Mumbai",
-    date: "Aug 10, 2024",
-    location: "Mumbai",
-    type: "Screening",
-    color: "bg-tangerine",
-    tagColor: "text-tangerine",
-    brief: "Members-only screening followed by a roundtable on independent distribution in India.",
-  },
-  {
-    id: "e4",
-    title: "Zine Maker's Fair",
-    date: "Aug 24, 2024",
-    location: "Delhi",
-    type: "Fair",
-    color: "bg-acid",
-    tagColor: "text-ink/70",
-    brief: "Table space, risograph demos, and a swap meet. Open to the public.",
-  },
-];
-
-const pastEvents = [
-  { title: "Vol. 11 — Neon Tokyo", date: "Mar 2024", type: "Screening", color: "bg-cobalt" },
-  { title: "Light Leaks Lisbon", date: "Feb 2024", type: "Workshop", color: "bg-tangerine" },
-  { title: "Salt & Grain — Marseille", date: "Nov 2023", type: "Residency", color: "bg-acid" },
-  { title: "Vol. 10 — Mexico City", date: "Sep 2023", type: "Festival", color: "bg-magenta" },
-  { title: "Darkroom Rituals IV", date: "Jul 2023", type: "Workshop", color: "bg-emerald" },
-  { title: "Ghosts on 16mm — NYC", date: "May 2023", type: "Screening", color: "bg-ink" },
-];
 
 /* ─── Page ─── */
 
@@ -145,7 +86,7 @@ function EventsPage() {
           </div>
           <div className="flex flex-col">
             {upcomingEvents.map((e, i) => (
-              <EventRow key={e.id} event={e} first={i === 0} />
+              <EventRow key={e.slug} event={e} first={i === 0} />
             ))}
           </div>
         </section>
@@ -274,7 +215,7 @@ function Nav() {
 
 /* ─── Featured Card ─── */
 
-function FeaturedCard({ event }: { event: typeof featuredEvent }) {
+function FeaturedCard({ event }: { event: PulseEvent }) {
   const [rsvp, setRsvp] = useState(false);
 
   return (
@@ -284,7 +225,9 @@ function FeaturedCard({ event }: { event: typeof featuredEvent }) {
           <span className="inline-block bg-cream text-ink px-3 py-1 font-mono text-[10px] uppercase tracking-[0.25em] rotate-[-2deg]">
             Featured
           </span>
-          <h3 className="mt-6 font-display text-4xl lg:text-6xl leading-[0.95] italic">{event.title}</h3>
+          <Link to="/events/$slug" params={{ slug: event.slug }}>
+            <h3 className="mt-6 font-display text-4xl lg:text-6xl leading-[0.95] italic hover:opacity-80 transition-opacity">{event.title}</h3>
+          </Link>
           <p className="mt-3 font-mono text-[11px] uppercase tracking-[0.22em] opacity-80">{event.subtitle}</p>
         </div>
         <div className="mt-10 space-y-3 font-mono text-[11px] uppercase tracking-[0.18em] opacity-90">
@@ -298,7 +241,7 @@ function FeaturedCard({ event }: { event: typeof featuredEvent }) {
           </div>
           <div className="flex items-center gap-2">
             <Clock className="size-4" />
-            {event.time}
+            {event.doors}
           </div>
         </div>
       </div>
@@ -315,9 +258,13 @@ function FeaturedCard({ event }: { event: typeof featuredEvent }) {
               {rsvp ? "✓" : "→"}
             </span>
           </button>
-          <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-ink/50">
-            {event.spots} spots left
-          </span>
+          <Link
+            to="/events/$slug"
+            params={{ slug: event.slug }}
+            className="font-mono text-[11px] uppercase tracking-[0.18em] underline underline-offset-4 decoration-magenta hover:text-magenta"
+          >
+            Full details
+          </Link>
         </div>
       </div>
     </div>
@@ -326,16 +273,20 @@ function FeaturedCard({ event }: { event: typeof featuredEvent }) {
 
 /* ─── Event Row ─── */
 
-function EventRow({ event, first }: { event: typeof upcomingEvents[0]; first: boolean }) {
+function EventRow({ event, first }: { event: PulseEvent; first: boolean }) {
   return (
-    <article className={`py-7 ${first ? "" : "border-t border-ink/10"} flex flex-col lg:flex-row lg:items-center gap-4 lg:gap-8 group`}>
+    <Link
+      to="/events/$slug"
+      params={{ slug: event.slug }}
+      className={`py-7 ${first ? "" : "border-t border-ink/10"} flex flex-col lg:flex-row lg:items-center gap-4 lg:gap-8 group`}
+    >
       <div className="flex items-center gap-4 shrink-0 lg:w-48">
-        <span className={`grid size-10 place-items-center rounded-full ${event.color} text-cream text-sm font-medium`}>
+        <span className={`grid size-10 place-items-center rounded-full ${event.color} ${event.color === "bg-acid" ? "text-ink" : "text-cream"} text-sm font-medium`}>
           {event.type[0]}
         </span>
         <div>
           <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-ink/50">{event.type}</p>
-          <p className="font-mono text-[12px] uppercase tracking-[0.14em]">{event.date}</p>
+          <p className="font-mono text-[12px] uppercase tracking-[0.14em]">{event.dateShort}</p>
         </div>
       </div>
 
@@ -351,13 +302,14 @@ function EventRow({ event, first }: { event: typeof upcomingEvents[0]; first: bo
           <MapPin className="size-3.5" />
           {event.location}
         </span>
-        <button className="size-10 rounded-full border border-ink/10 grid place-items-center hover:bg-ink hover:text-cream transition-colors">
+        <span className="size-10 rounded-full border border-ink/10 grid place-items-center group-hover:bg-ink group-hover:text-cream transition-colors">
           <ArrowUpRight className="size-4" />
-        </button>
+        </span>
       </div>
-    </article>
+    </Link>
   );
 }
+
 
 /* ─── Past Card ─── */
 
